@@ -59,7 +59,3 @@ gem 'figaro'
 # Inspinia
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
-
-# Swithces
-gem 'switchery-rails'
-
