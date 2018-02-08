@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_aplicacion: 2018-02-08 16:35:33
+  quiz_type: one
+
+two:
+  fecha_aplicacion: 2018-02-08 16:35:33
+  quiz_type: two

@@ -10,16 +10,94 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108195426) do
+ActiveRecord::Schema.define(version: 20180208225441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "rols", force: :cascade do |t|
-    t.string "nombre"
-    t.string "descripcion"
+  create_table "answers", force: :cascade do |t|
+    t.string "respuesta"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "pregunta"
+    t.bigint "quiz_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "answer_id"
+    t.index ["quiz_type_id"], name: "index_questions_on_quiz_type_id"
+  end
+
+  create_table "quiz_types", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "quizzes", force: :cascade do |t|
+    t.datetime "fecha_aplicacion"
+    t.bigint "quiz_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "evaluator_id"
+    t.index ["quiz_type_id"], name: "index_quizzes_on_quiz_type_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "nombre"
+    t.text "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "simulations", force: :cascade do |t|
+    t.integer "puntaje"
+    t.datetime "fecha_aplicacion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "evaluator_id"
+  end
+
+  create_table "user_answers", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.bigint "question_id"
+    t.bigint "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_user_answers_on_answer_id"
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
+    t.index ["quiz_id"], name: "index_user_answers_on_quiz_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "nombre"
+    t.string "ap_paterno"
+    t.string "ap_materno"
+    t.date "fecha_nacimiento"
+    t.string "curp"
+    t.string "email"
+    t.string "password_digest"
+    t.bigint "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_users_on_role_id"
+  end
+
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "answers"
+  add_foreign_key "questions", "quiz_types"
+  add_foreign_key "quizzes", "quiz_types"
+  add_foreign_key "quizzes", "users"
+  add_foreign_key "quizzes", "users", column: "evaluator_id"
+  add_foreign_key "simulations", "users"
+  add_foreign_key "simulations", "users", column: "evaluator_id"
+  add_foreign_key "user_answers", "answers"
+  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "quizzes"
+  add_foreign_key "users", "roles"
 end
