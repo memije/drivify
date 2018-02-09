@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208225441) do
+ActiveRecord::Schema.define(version: 20180209172312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180208225441) do
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "inciso"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
@@ -57,10 +58,12 @@ ActiveRecord::Schema.define(version: 20180208225441) do
   create_table "simulations", force: :cascade do |t|
     t.integer "puntaje"
     t.datetime "fecha_aplicacion"
+    t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "evaluator_id"
+    t.index ["quiz_id"], name: "index_simulations_on_quiz_id"
   end
 
   create_table "user_answers", force: :cascade do |t|
@@ -94,6 +97,7 @@ ActiveRecord::Schema.define(version: 20180208225441) do
   add_foreign_key "quizzes", "quiz_types"
   add_foreign_key "quizzes", "users"
   add_foreign_key "quizzes", "users", column: "evaluator_id"
+  add_foreign_key "simulations", "quizzes"
   add_foreign_key "simulations", "users"
   add_foreign_key "simulations", "users", column: "evaluator_id"
   add_foreign_key "user_answers", "answers"
