@@ -15,5 +15,6 @@
 //= require metisMenu/jquery.metisMenu.js
 //= require pace/pace.min.js
 //= require slimscroll/jquery.slimscroll.min.js
-//= require switchery
+//= require backstretch/jquery.backstretch.min.js
+//= require iziToast
 //= require_tree .
