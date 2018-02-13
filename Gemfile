@@ -59,3 +59,9 @@ gem 'figaro'
 # Inspinia
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+
+# iziToast
+gem 'izitoast'
+
+# i18n
+gem 'rails-i18n'

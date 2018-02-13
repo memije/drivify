@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>INSPINIA</title>
+    <title><%= content_for?(:page_title) ? yield(:page_title) : "DRIVIFY" %></title>
 
     <!-- Main css styles -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -12,18 +12,15 @@
     <!-- Main javascript files -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= yield :css %>
 
 </head>
 <body>
 
-    <!-- Wrapper-->
-    <div id="container" class="gray-bg" style="min-height: 100vh; height: auto;">        
+  <!-- Main view  -->
+  <%= yield %>
 
-        <!-- Main view  -->
-        <%= yield %>            
-
-    </div>
-    <!-- End wrapper-->
+  <%= yield :script %>
 
 </body>
 </html>
