@@ -1,6 +1,6 @@
 class RegistroController < ApplicationController
   def new
-    @user = User.new
+    # @user = User.new
     render layout: 'empty'
   end
 
@@ -9,8 +9,8 @@ class RegistroController < ApplicationController
     @user.role = Role.find(3)
     if @user.save
       cookies.signed[:user_id] = @user.id
-      flash[:notice] = "Gracias #{@user.nombre}, has sido registrado exitosamente."
-      redirect_to registro_url
+      flash[:notice] = "Gracias <b>#{@user.nombre}</b>, has sido registrado exitosamente."
+      redirect_to root_url
     else
       flash.now[:error] = @user.errors.full_messages.to_sentence
       render :new, layout: 'empty'
