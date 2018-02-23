@@ -39,6 +39,22 @@
 
     </div>
     <!-- End wrapper-->
+    <script>
+        <% if flash[:notice] %>
+        iziToast.success({
+            title: 'Éxito',
+            message: '<%= flash[:notice].html_safe unless flash[:notice].blank? %>',
+            position: 'topRight'
+        });
+        <% end %>
 
+        <% if flash.now[:error] %>
+        iziToast.error({
+            title: 'Error',
+            message: '<%= flash[:error].html_safe unless flash[:error].blank? %>',
+            position: 'topRight'
+        });
+        <% end %>
+    </script>
 </body>
 </html>

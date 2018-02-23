@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  DRIVIFY - REGISTRO
+  DRIVIFY - INICIO DE SESIÓN
 <% end %>
 
 <% content_for :css do %>
@@ -52,36 +52,13 @@
         <% end %>
       </h1>
       <div class="caption">
-        <span class="border">REGISTRO</span><br><br>
+        <span class="border">INICIO DE SESIÓN</span><br><br>
       </div>
     </div>
     <div id="container-col" class="col-sm-5">
       <div class="ibox float-e-margins" style="width: 100%;">
         <div class="ibox-content">
-          <%= form_for :user, html: {role: "form"} do |f| %>
-            <div class="form-group">
-            <label>Nombre(s)<span class="text-danger">*</span></label>
-              <%= f.text_field :nombre, class:"form-control", required:"true" %>
-            </div>
-            <div class="form-group">
-              <label>Apellido Paterno<span class="text-danger">*</span></label>
-              <%= f.text_field :ap_paterno, class:"form-control", required:"true" %>
-            </div>
-            <div class="form-group">
-              <label>Apellido Materno<span class="text-danger">*</span></label>
-              <%= f.text_field :ap_materno, class:"form-control", required:"true" %>
-            </div>
-            <div class="form-group">
-              <label>Fecha de Nacimiento<span class="text-danger">*</span></label>
-              <div class="input-group date">
-                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                <%= f.date_field :fecha_nacimiento, class:"form-control", required:"true" %>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>CURP<span class="text-danger">*</span></label>
-              <%= f.text_field :curp, class:"form-control", required:"true" %>
-            </div>
+          <%= form_for :login, html: {role: "form"} do |f| %>
             <div class="form-group">
               <label>Correo Electrónico<span class="text-danger">*</span></label>
               <%= f.email_field :email, class:"form-control", required:"true" %>
@@ -90,17 +67,12 @@
               <label>Contraseña<span class="text-danger">*</span></label>
               <%= f.password_field :password, class:"form-control", required:"true" %>
             </div>
-            <div class="form-group">
-              <label>Confirmar Contraseña<span class="text-danger">*</span></label>
-              <%= f.password_field :password_confirmation, class:"form-control", required:"true" %>
-            </div>
             <%= f.submit "Enviar", class: "btn btn-primary btn-block" %>
           <% end %>
-
         </div>
         <div class="ibox-footer">
           <span class="pull-right">
-            ¿Ya tienes una cuenta? <%= link_to "Inicia Sesión", login_path %>
+            ¿No tienes una cuenta? <%= link_to "Regístrate", registro_path %>
           </span>
           Los campos marcados con (<span class="text-danger">*</span>) son obligatorios.
         </div>
@@ -112,16 +84,9 @@
 <% content_for :script do %>
   <script>
 
-    $(function(){
-
-        // $.backstretch("https://images.pexels.com/photos/13861/IMG_3496bfree.jpg");
-        $.backstretch("https://images.pexels.com/photos/7674/pexels-photo.jpg");
-
-        $('#user_curp').on('keyup',function(){
-            $(this).val($(this).val().toUpperCase());
-        });
-
-    });
+      $(function(){
+          $.backstretch("https://images.pexels.com/photos/7674/pexels-photo.jpg");
+      });
 
   </script>
 <% end %>
