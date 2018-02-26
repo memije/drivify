@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate_user
-    cookies.delete(:user_id) && redirect_to(root_url) if current_user.blank?
+    if current_user.blank?
+      cookies.delete(:user_id)
+      redirect_to(login_path)
+
+    end
   end
 
   def current_user

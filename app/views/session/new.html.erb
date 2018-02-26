@@ -69,11 +69,12 @@
             </div>
             <%= f.submit "Enviar", class: "btn btn-primary btn-block" %>
           <% end %>
+          ¿No tienes una cuenta? <%= link_to "Regístrate", registro_path %>
         </div>
         <div class="ibox-footer">
-          <span class="pull-right">
+          <!-- <span class="pull-right">
             ¿No tienes una cuenta? <%= link_to "Regístrate", registro_path %>
-          </span>
+          </span> -->
           Los campos marcados con (<span class="text-danger">*</span>) son obligatorios.
         </div>
       </div>
