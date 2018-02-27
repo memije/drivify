@@ -94,6 +94,8 @@
               <label>Confirmar Contraseña<span class="text-danger">*</span></label>
               <%= f.password_field :password_confirmation, class:"form-control", required:"true" %>
             </div>
+            <%= recaptcha_tags %>
+            <br>
             <%= f.submit "Enviar", class: "btn btn-primary btn-block" %>
           <% end %>
           ¿Ya tienes una cuenta? <%= link_to "Inicia Sesión", login_path %>

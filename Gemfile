@@ -65,3 +65,9 @@ gem 'izitoast'
 
 # i18n
 gem 'rails-i18n'
+
+# Recaptcha
+gem "recaptcha", require: "recaptcha/rails"
+
+# Jquery Rails
+gem "jquery-rails"
