@@ -7,10 +7,11 @@ class RegistroController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.role = Role.find(3)
-    if @user.save
+    if verify_recaptcha(model: @user, timeout: 10) && @user.save
+    # if @user.save
       cookies.signed[:user_id] = @user.id
       flash[:notice] = "Gracias <b>#{@user.nombre}</b>, has sido registrado exitosamente."
-      redirect_to root_url
+      redirect_to home_path
     else
       flash.now[:error] = @user.errors.full_messages.to_sentence
       render :new, layout: 'empty'

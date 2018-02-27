@@ -11,7 +11,7 @@ class SessionController < ApplicationController
     if @user.present? && @user.authenticate(login_params[:password])
       cookies.signed[:user_id] = @user.id
       flash[:notice] = "Bienvenido de vuelta <b>#{@user.nombre}</b>."
-      redirect_to root_url
+      redirect_to home_path
     else
       flash.now[:error] = "La combinación de email y contraseña es incorrecta."
       render :new, layout: 'empty'
