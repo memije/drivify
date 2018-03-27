@@ -4,94 +4,92 @@
 
 <% content_for :css do %>
   <style>
-    html,body,.container-fluid,.row,[class*="col-"]{
+    /*html,body,.container-fluid,.row,[class*="col-"]{
       height: 100%;
-    }
+    }*/
     .backstretch{
       opacity: 0.65;
     }
     .logo-drivify a{
       font-weight: 600;
-      font-size: 70px;
+      font-size: 2em;
       color: #FFFFFF;
     }
     .caption {
-      position: absolute;
+      /*position: absolute;
       left: 0;
-      top: 50%;
+      top: 25%;*/
       width: 100%;
       text-align: center;
       vertical-align: middle;
       color: #000;
     }
-    .caption span.border {
+    .border {
       background-color: #111;
       color: #fff;
       padding: 18px;
-      font-size: 25px;
-      letter-spacing: 10px;
+      font-size: 2em;
+      letter-spacing: 1em;
+      text-align: center;
     }
-    #container-col{
+    /*#container-col{
       padding: 100px;
       display: flex;
       align-items: center;
-    }
-    .gray-bg{
+    }*/
+    /*.gray-bg{
       height: 100%;
       width: 100%;
-    }
+    }*/
   </style>
 <% end %>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-7">
-      <h1 class="logo-drivify text-white">
-        <%= link_to root_path do %>
-          <i class="fa fa-car"></i> DRIVIFY
-        <% end %>
-      </h1>
-      <div class="caption">
+
+  <div class="row" style="margin-top: 2em;">
+    <div class="col-md-6 col-md-offset-3">
+      <!--<div class="caption">
         <span class="border">REGISTRO</span><br><br>
+      </div>-->
+      <div class="border">
+        <i class="fa fa-car"></i>DRIVIFY&#8209;REGISTRO
       </div>
-    </div>
-    <div id="container-col" class="col-sm-5">
       <div class="ibox float-e-margins" style="width: 100%;">
         <div class="ibox-content">
           <%= form_for :user, html: {role: "form"} do |f| %>
             <div class="form-group">
-            <label>Nombre(s)<span class="text-danger">*</span></label>
+              <label><span class="text-danger">*</span>Nombre(s)</label>
               <%= f.text_field :nombre, class:"form-control", required:"true" %>
             </div>
             <div class="form-group">
-              <label>Apellido Paterno<span class="text-danger">*</span></label>
+              <label><span class="text-danger">*</span>Apellido Paterno</label>
               <%= f.text_field :ap_paterno, class:"form-control", required:"true" %>
             </div>
             <div class="form-group">
-              <label>Apellido Materno<span class="text-danger">*</span></label>
+              <label><span class="text-danger">*</span>Apellido Materno</label>
               <%= f.text_field :ap_materno, class:"form-control", required:"true" %>
             </div>
             <div class="form-group">
-              <label>Fecha de Nacimiento<span class="text-danger">*</span></label>
+              <label><span class="text-danger">*</span>Fecha de Nacimiento</label>
               <div class="input-group date">
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 <%= f.date_field :fecha_nacimiento, class:"form-control", required:"true" %>
               </div>
             </div>
             <div class="form-group">
-              <label>CURP<span class="text-danger">*</span></label>
+              <label><span class="text-danger">*</span>CURP</label>
               <%= f.text_field :curp, class:"form-control", required:"true" %>
             </div>
             <div class="form-group">
-              <label>Correo Electrónico<span class="text-danger">*</span></label>
+              <label><span class="text-danger">*</span>Correo Electrónico</label>
               <%= f.email_field :email, class:"form-control", required:"true" %>
             </div>
             <div class="form-group">
-              <label>Contraseña<span class="text-danger">*</span></label>
+              <label><span class="text-danger">*</span>Contraseña</label>
               <%= f.password_field :password, class:"form-control", required:"true", minlength: "8" %>
             </div>
             <div class="form-group">
-              <label>Confirmar Contraseña<span class="text-danger">*</span></label>
+              <label><span class="text-danger">*</span>Confirmar Contraseña</label>
               <%= f.password_field :password_confirmation, class:"form-control", required:"true", minlength: "8" %>
             </div>
             <%= recaptcha_tags %>
@@ -107,6 +105,13 @@
           Los campos marcados con (<span class="text-danger">*</span>) son obligatorios.
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-7">
+    </div>
+    <div id="container-col" class="col-sm-5">
+
     </div>
   </div>
 </div>
