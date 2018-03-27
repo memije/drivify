@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
               <label>Contraseña<span class="text-danger">*</span></label>
-              <%= f.password_field :password, class:"form-control", required:"true" %>
+              <%= f.password_field :password, class:"form-control", required:"true", minlength: "8"%>
             </div>
             <%= f.submit "Enviar", class: "btn btn-primary btn-block" %>
           <% end %>
@@ -87,6 +87,7 @@
 
       $(function(){
           $.backstretch("https://images.pexels.com/photos/7674/pexels-photo.jpg");
+
       });
 
   </script>

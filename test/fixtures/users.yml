@@ -4,7 +4,7 @@ one:
   nombre: MyString
   ap_paterno: MyString
   ap_materno: MyString
-  fecha_nacimiento: 2018-02-09
+  fecha_nacimiento: 2018-03-27
   curp: MyString
   email: MyString
   password_digest: MyString
@@ -14,7 +14,7 @@ two:
   nombre: MyString
   ap_paterno: MyString
   ap_materno: MyString
-  fecha_nacimiento: 2018-02-09
+  fecha_nacimiento: 2018-03-27
   curp: MyString
   email: MyString
   password_digest: MyString

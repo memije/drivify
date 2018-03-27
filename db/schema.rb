@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223211756) do
+ActiveRecord::Schema.define(version: 20180327184710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.string "respuesta"
+    t.text "respuesta"
+    t.boolean "correcta"
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,17 +30,18 @@ ActiveRecord::Schema.define(version: 20180223211756) do
     t.bigint "quiz_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "answer_id"
     t.index ["quiz_type_id"], name: "index_questions_on_quiz_type_id"
   end
 
   create_table "quiz_types", force: :cascade do |t|
+    t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "quizzes", force: :cascade do |t|
     t.datetime "fecha_aplicacion"
+    t.decimal "puntaje"
     t.bigint "quiz_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,14 +58,14 @@ ActiveRecord::Schema.define(version: 20180223211756) do
   end
 
   create_table "simulations", force: :cascade do |t|
-    t.integer "puntaje"
+    t.integer "obstaculos_derribados"
+    t.integer "velocidad_excedida"
+    t.integer "tiempo_simulacion"
+    t.datetime "cita"
     t.datetime "fecha_aplicacion"
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "evaluator_id"
-    t.string "tiempo"
     t.index ["quiz_id"], name: "index_simulations_on_quiz_id"
   end
 
@@ -93,14 +95,11 @@ ActiveRecord::Schema.define(version: 20180223211756) do
   end
 
   add_foreign_key "answers", "questions"
-  add_foreign_key "questions", "answers"
   add_foreign_key "questions", "quiz_types"
   add_foreign_key "quizzes", "quiz_types"
   add_foreign_key "quizzes", "users"
   add_foreign_key "quizzes", "users", column: "evaluator_id"
   add_foreign_key "simulations", "quizzes"
-  add_foreign_key "simulations", "users"
-  add_foreign_key "simulations", "users", column: "evaluator_id"
   add_foreign_key "user_answers", "answers"
   add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "quizzes"

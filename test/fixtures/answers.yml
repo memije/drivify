@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  respuesta: MyString
+  respuesta: MyText
+  correcta: false
   question: one
 
 two:
-  respuesta: MyString
+  respuesta: MyText
+  correcta: false
   question: two
