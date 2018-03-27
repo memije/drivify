@@ -1,4 +1,4 @@
-class AddUserToQuiz < ActiveRecord::Migration[5.1]
+class AddForeignKeyToQuiz < ActiveRecord::Migration[5.1]
   def change
     add_column :quizzes, :user_id, :integer
     add_column :quizzes, :evaluator_id, :integer
