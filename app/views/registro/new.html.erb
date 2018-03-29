@@ -4,9 +4,6 @@
 
 <% content_for :css do %>
   <style>
-    /*html,body,.container-fluid,.row,[class*="col-"]{
-      height: 100%;
-    }*/
     .backstretch{
       opacity: 0.65;
     }
@@ -14,15 +11,6 @@
       font-weight: 600;
       font-size: 2em;
       color: #FFFFFF;
-    }
-    .caption {
-      /*position: absolute;
-      left: 0;
-      top: 25%;*/
-      width: 100%;
-      text-align: center;
-      vertical-align: middle;
-      color: #000;
     }
     .border {
       background-color: #111;
@@ -32,27 +20,19 @@
       letter-spacing: 1em;
       text-align: center;
     }
-    /*#container-col{
-      padding: 100px;
-      display: flex;
-      align-items: center;
-    }*/
-    /*.gray-bg{
-      height: 100%;
-      width: 100%;
-    }*/
   </style>
 <% end %>
 
 <div class="container-fluid">
-
   <div class="row" style="margin-top: 2em;">
     <div class="col-md-6 col-md-offset-3">
-      <!--<div class="caption">
-        <span class="border">REGISTRO</span><br><br>
-      </div>-->
       <div class="border">
-        <i class="fa fa-car"></i>DRIVIFY&#8209;REGISTRO
+        <p>
+          <i class="fa fa-car"></i>DRIVIFY
+        </p>
+        <p>
+          <span>REGISTRO</span>
+        </p>
       </div>
       <div class="ibox float-e-margins" style="width: 100%;">
         <div class="ibox-content">
@@ -99,19 +79,9 @@
           ¿Ya tienes una cuenta? <%= link_to "Inicia Sesión", login_path %>
         </div>
         <div class="ibox-footer">
-          <!-- <span class="pull-right">
-            ¿Ya tienes una cuenta? <%= link_to "Inicia Sesión", login_path %>
-          </span> -->
           Los campos marcados con (<span class="text-danger">*</span>) son obligatorios.
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-7">
-    </div>
-    <div id="container-col" class="col-sm-5">
-
     </div>
   </div>
 </div>
