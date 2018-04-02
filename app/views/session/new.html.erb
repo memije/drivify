@@ -23,7 +23,7 @@
   </style>
 <% end %>
 
-<div class="container-fluid">
+<div class="container-fluid animated fadeInDown">
   <div class="row" style="margin-top: 2em;">
     <div class="col-md-6 col-md-offset-3">
       <div class="border">
@@ -61,8 +61,7 @@
   <script>
 
       $(function(){
-          $.backstretch("https://images.pexels.com/photos/7674/pexels-photo.jpg");
-
+          $.backstretch("<%= asset_path "car-background.jpg" %>");
       });
 
   </script>

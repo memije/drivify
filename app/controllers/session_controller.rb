@@ -9,7 +9,7 @@ class SessionController < ApplicationController
   def create
     @user = User.find_by("LOWER(email) = ?",login_params[:email].downcase)
     if @user.present? && @user.authenticate(login_params[:password])
-      cookies.signed[:user_id] = @user.id
+      session[:user_id] = @user.id
       flash[:notice] = "Bienvenido de vuelta <b>#{@user.nombre}</b>."
       redirect_to home_path
     else
@@ -19,7 +19,7 @@ class SessionController < ApplicationController
   end
 
   def destroy
-    cookies.delete(:user_id)
+    session.delete(:user_id)
     redirect_to root_url
   end
 

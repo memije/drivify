@@ -21,11 +21,22 @@
                   <i class="fa fa-car"></i>
                 </div>
             </li>
+
             <li class="<%= 'active' if (current_page?(home_path) || current_page?(root_path)) %>">
                 <%= link_to home_path do %>
                 <i class="fa fa-laptop"></i> <span class="nav-label">Main page</span>
                 <% end %>
             </li>
+
+            <%# Modulo de administracion de usuarios para administradores %>
+            <% if @current_user.role.id == 1 %>
+              <li class="<%= 'active' if (current_page?(user_admin_path) || current_page?(new_user_path)) %>">
+                <%= link_to user_admin_path do %>
+                  <i class="fa fa-users"></i> <span class="nav-label">Usuarios</span>
+                <% end %>
+              </li>
+            <% end %>
+
         </ul>
 
     </div>
