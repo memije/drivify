@@ -12,7 +12,7 @@
     <!-- Main javascript files -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-
+    <%= yield :css %>
 </head>
 <body>
 
@@ -38,8 +38,15 @@
         <!-- End page wrapper-->
 
     </div>
+
+    <%= yield :script %>
     <!-- End wrapper-->
     <script>
+
+        $(function(){
+            $("[data-toggle='tooltip']").tooltip();
+        });
+
         <% if flash[:notice] %>
         iziToast.success({
             message: '<%= flash[:notice].html_safe unless flash[:notice].blank? %>',
