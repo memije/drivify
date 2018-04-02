@@ -29,7 +29,7 @@ class UserAdminController < ApplicationController
     @user = User.find(params[:id])
     @user.role = Role.find(params[:user][:role])
     if @user.update(user_params)
-      flash[:notice] = "<b>#{@user.nombre} </b> ha sido actualizado exitosamente."
+      flash[:notice] = "<b>#{@user.nombre}</b> ha sido actualizado exitosamente."
     else
       flash[:error] = @user.errors.full_messages.to_sentence
     end
