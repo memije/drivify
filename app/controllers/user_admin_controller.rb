@@ -18,7 +18,7 @@ class UserAdminController < ApplicationController
     @user = User.new(user_params)
     @user.role = Role.find(params[:user][:role])
     if @user.save
-      flash[:notice] = "<b>#{@user.nombre}</b> ha sido registrado exitosamente."
+      flash[:notice] = "El usuario ha sido registrado exitosamente."
     else
       flash[:error] = @user.errors.full_messages.to_sentence
     end
@@ -29,7 +29,7 @@ class UserAdminController < ApplicationController
     @user = User.find(params[:id])
     @user.role = Role.find(params[:user][:role])
     if @user.update(user_params)
-      flash[:notice] = "<b>#{@user.nombre}</b> ha sido actualizado exitosamente."
+      flash[:notice] = "El usuario ha sido actualizado exitosamente."
     else
       flash[:error] = @user.errors.full_messages.to_sentence
     end
@@ -39,7 +39,7 @@ class UserAdminController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      flash[:notice] = "<b>#{@user.nombre}</b> ha sido eliminado exitosamente."
+      flash[:notice] = "El usuario ha sido eliminado exitosamente."
     else
       flash[:error] = @user.errors.full_messages.to_sentence
     end

@@ -6,4 +6,12 @@ class User < ApplicationRecord
   belongs_to :role
   has_many :requested_quizzes, :class_name => 'Quiz', :foreign_key => 'user_id'
   has_many :evaluated_quizzes, :class_name => 'Quiz', :foreign_key => 'evaluator_id'
+
+  def nombre_completo
+    "#{nombre} #{ap_paterno} #{ap_materno}"
+  end
+
+  def nombre_completo_paterno
+    "#{ap_paterno} #{ap_materno} #{nombre}"
+  end
 end
