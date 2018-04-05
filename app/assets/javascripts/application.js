@@ -19,4 +19,6 @@
 //= require slimscroll/jquery.slimscroll.min.js
 //= require backstretch/jquery.backstretch.min.js
 //= require iziToast
+//= require sweetAlert/sweetalert.min.js
+//= require dataTables/datatables.min.js
 //= require_tree .
