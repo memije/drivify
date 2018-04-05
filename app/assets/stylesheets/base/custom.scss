@@ -12,3 +12,11 @@
 body{
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.navbar.navbar-static-top{
+  background-color: $navy;
+}
+
+.nav.navbar-right > li > a{
+  color: #fff;
+}
