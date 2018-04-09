@@ -7,7 +7,7 @@
           <% if @answer.blank? %>
             <h5>Registrar Respuesta</h5>
           <% else %>
-            <h5>Editar Respuesta %></h5>
+            <h5>Editar Respuesta</h5>
           <% end %>
         </div>
         <div class="ibox-content">
@@ -27,12 +27,20 @@
                   <%= f.collection_select :question, Question.order(:id).all, :id, :pregunta_truncada, @answer.blank? ? {:prompt=>"Seleccione una pregunta"} : {:selected => @answer.question.id, :prompt=>true} , class:"form-control", required:"true" %>
                 </div>
                 <div class="form-group">
-                  <label><span class="text-danger">*</span>¿Es respuesta?</label>
+                  <label><span class="text-danger">*</span>¿Es la respuesta correcta?</label>
                   <br>
-                  <%= f.label :correcta, "Si", :value => "true" %>
-                  <%= f.radio_button :correcta, true %>
-                  <%= f.label :correcta, "No", :value => "false" %>
-                  <%= f.radio_button :correcta, false %>
+                  <div class="pretty p-default p-round">
+                    <%= f.radio_button :correcta, true %>
+                    <div class="state p-primary-o">
+                      <%= f.label :correcta, "Si", :value => "true" %>
+                    </div>
+                  </div>
+                  <div class="pretty p-default p-round">
+                    <%= f.radio_button :correcta, false %>
+                    <div class="state p-primary-o">
+                      <%= f.label :correcta, "No", :value => "false" %>
+                    </div>
+                  </div>
                 </div>
                 <br>
                 <%= f.submit "Enviar", class: "btn btn-primary" %>
@@ -47,3 +55,13 @@
     </div>
   </div>
 </div>
+
+<% content_for :script do %>
+  <script>
+
+      $(function () {
+          $.select2("select");
+      });
+
+  </script>
+<% end %>

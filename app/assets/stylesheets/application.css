@@ -13,6 +13,9 @@
  *= require animate/animate.css
  *= require checkbox/checkbox.css
  *= require iziToast
- *= require style
  *= require dataTables/datatables.min.css
+ *= require pretty-checkbox/pretty-checkbox.scss
+ *= require select2/select2.css
+ *= require jquerySteps/jquery.steps.css
+ *= require style
  */

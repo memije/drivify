@@ -1,6 +1,6 @@
 class AnswerAdminController < ApplicationController
 
-  before_action :authenticate_user, :validate_privileges
+  before_action :authenticate_user, :validate_admin_privileges
 
   def index
     @answers = Answer.all

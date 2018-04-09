@@ -60,11 +60,10 @@ User.create([
               })
 end
 
-i = 0
-while i < 25 do
-  user = User.order("RANDOM()").first
-  if user.id != 1
+User.all.each do |user|
+  if user.id != 1 && user.id != 2 && user.id != 3 && user.id != 4
     Quiz.create(quiz_type: QuizType.order("RANDOM()").first, user: user)
-    i += 1
   end
 end
+
+Quiz.create(quiz_type: QuizType.order("RANDOM()").first, user: User.find(4), evaluator: User.find(2), fecha_aplicacion: DateTime.now, puntaje: 10)
