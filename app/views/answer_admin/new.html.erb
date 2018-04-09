@@ -1,0 +1,49 @@
+<div class="wrapper wrapper-content animated fadeInDown">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="ibox">
+        <div class="ibox-title">
+          <% if @answer.blank? %>
+            <h5>Registrar Respuesta</h5>
+          <% else %>
+            <h5>Editar Respuesta %></h5>
+          <% end %>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_for :answer, html: {role: "form"} do |f| %>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Inciso</label>
+                  <%= f.select(:inciso, ['a','b','c','d','e'], @answer.blank? ? {:prompt=>"Seleccione una pregunta"} : {:selected => @answer.inciso, :prompt=>true} , { :class => 'form-control' }) %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Respuesta</label>
+                  <%= f.text_area :respuesta, class:"form-control", required:"true" %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Pregunta</label>
+                  <%= f.collection_select :question, Question.order(:id).all, :id, :pregunta_truncada, @answer.blank? ? {:prompt=>"Seleccione una pregunta"} : {:selected => @answer.question.id, :prompt=>true} , class:"form-control", required:"true" %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>¿Es respuesta?</label>
+                  <br>
+                  <%= f.label :correcta, "Si", :value => "true" %>
+                  <%= f.radio_button :correcta, true %>
+                  <%= f.label :correcta, "No", :value => "false" %>
+                  <%= f.radio_button :correcta, false %>
+                </div>
+                <br>
+                <%= f.submit "Enviar", class: "btn btn-primary" %>
+                <%= link_to answer_admin_path do %>
+                  <span class="btn btn-danger">Cancelar</span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

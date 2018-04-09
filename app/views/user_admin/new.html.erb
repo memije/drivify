@@ -7,7 +7,7 @@
           <% if @user.blank? %>
             <h5>Registrar Usuario</h5>
           <% else %>
-            <h5>Editar Usuario: <%= @user.nombre_completo %></h5>
+            <h5>Editar Usuario</h5>
           <% end %>
         </div>
         <div class="ibox-content">
@@ -53,7 +53,7 @@
                 <% end %>
                 <div class="form-group">
                   <label><span class="text-danger">*</span>Rol</label>
-                  <%= f.collection_select :role, Role.all, :id, :nombre_descripcion, @user.blank? ? {:prompt=>"Seleccione un rol"} : {:selected => @user.role.id, :prompt=>true} , class:"form-control", required:"true" %>
+                  <%= f.collection_select :role, Role.where.not(id: 1), :id, :nombre_descripcion, @user.blank? ? {:prompt=>"Seleccione un rol"} : {:selected => @user.role.id, :prompt=>true} , class:"form-control", required:"true" %>
                 </div>
                 <br>
                 <%= f.submit "Enviar", class: "btn btn-primary" %>
