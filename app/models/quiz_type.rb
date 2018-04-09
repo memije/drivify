@@ -1,4 +1,5 @@
 class QuizType < ApplicationRecord
-  has_many :quizzes
-  has_many :questions
+  validates :nombre, uniqueness: true
+  has_many :quizzes, :dependent => :destroy
+  has_many :questions, :dependent => :destroy
 end

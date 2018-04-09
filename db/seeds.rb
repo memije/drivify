@@ -6,6 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+def random_text(palabras)
+  res = ""
+  (0..palabras).each do |index|
+    res = res+" "+(0...8).map { (65 + rand(26)).chr }.join
+  end
+  res
+end
 
 # Role seed
 Role.create([
@@ -18,19 +25,27 @@ Role.create([
 # QuizType seed
 # (1..10).each do |index|
 # end
+#
 
-QuizType.create([
-                    {nombre: 'A'},
-                    {nombre: 'B'},
-                    {nombre: 'C'},
-                    {nombre: 'D'},
-                    {nombre: 'E'},
-                    {nombre: 'F'},
-                    {nombre: 'G'},
-                    {nombre: 'H'},
-                    {nombre: 'I'},
-                    {nombre: 'J'}
-                ])
+# Crea tipos de la A a la J
+("A".."J").each do |letra|
+  QuizType.create({nombre: letra})
+end
+
+# Creacion de preguntas para los tipos de examenes
+QuizType.all.each do |type|
+  (1..5).each do |index|
+    Question.create(quiz_type: type, pregunta: "#{random_text(20)}")
+  end
+end
+
+Question.all.each do |question|
+  ("a".."e").each do |index|
+    Answer.create(inciso: index, respuesta: "#{random_text(5)}", correcta: false, question: question)
+  end
+end
+
+# Creacion de respuestas para las preguntas
 
 # User seed
 User.create([
@@ -43,4 +58,13 @@ User.create([
   User.create({
                   nombre: 'Prueba', ap_paterno: 'Prueba', ap_materno: 'Prueba', fecha_nacimiento: '01/01/1999', curp: "LALA990101HDFXXX0#{index}", email: "prueba#{index}@mail.com", password: '12345678', password_confirmation:'12345678',role: Role.find(3)
               })
+end
+
+i = 0
+while i < 25 do
+  user = User.order("RANDOM()").first
+  if user.id != 1
+    Quiz.create(quiz_type: QuizType.order("RANDOM()").first, user: user)
+    i += 1
+  end
 end

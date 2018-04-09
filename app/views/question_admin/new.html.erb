@@ -1,0 +1,37 @@
+<div class="wrapper wrapper-content animated fadeInDown">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="ibox">
+        <div class="ibox-title">
+          <% if @question.blank? %>
+            <h5>Registrar Pregunta</h5>
+          <% else %>
+            <h5>Editar Pregunta %></h5>
+          <% end %>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_for :question, html: {role: "form"} do |f| %>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Pregunta</label>
+                  <%= f.text_area :pregunta, class:"form-control", required:"true" %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Tipo de Evaluación Teórica</label>
+                  <%= f.collection_select :quiz_type, QuizType.order(:id).all, :id, :nombre, @question.blank? ? {:prompt=>"Seleccione un tipo de evaluación teórica"} : {:selected => @question.quiz_type.id, :prompt=>true} , class:"form-control", required:"true" %>
+                </div>
+                <br>
+                <%= f.submit "Enviar", class: "btn btn-primary" %>
+                <%= link_to question_admin_path do %>
+                  <span class="btn btn-danger">Cancelar</span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

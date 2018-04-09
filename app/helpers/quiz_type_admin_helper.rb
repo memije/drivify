@@ -1,0 +1,2 @@
+module QuizTypeAdminHelper
+end

@@ -3,7 +3,7 @@ class UserAdminController < ApplicationController
   before_action :authenticate_user, :validate_privileges
 
   def index
-    @users = User.all.order(:nombre)
+    @users = User.all
   end
 
   def new
