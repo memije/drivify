@@ -103,7 +103,10 @@ Rails.application.routes.draw do
 
     # modulo para evaluaciones teoricas
     scope "/evaluaciones_teoricas", evaluaciones_teoricas_scope: true do
-      get '/' => 'quiz_user#index', as: :quiz_user      
+      get '/' => 'quiz_user#index', as: :quiz_user
+      get '/:id' => 'quiz_user#show', as: :quiz_user_show
+      delete '/' => 'quiz_user#destroy', as: :quiz_user_destroy
+      post '/' => 'quiz_user#create', as: :quiz_user_create
     end
   end  
 
