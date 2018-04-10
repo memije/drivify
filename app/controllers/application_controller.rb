@@ -24,9 +24,30 @@ class ApplicationController < ActionController::Base
     user.role.id == 1
   end
 
-  def validate_privileges
+  def is_eval?(user)
+    user.role.id == 2
+  end
+
+  def is_user?(user)
+    user.role.id == 3
+  end
+
+  def validate_admin_privileges
     if !is_admin?(current_user)
       redirect_to root_path
     end
   end
+
+  def validate_eval_privileges
+    if !is_eval?(current_user)
+      redirect_to root_path
+    end
+  end
+
+  def validate_user_privileges
+    if !is_user?(current_user)
+      redirect_to root_path
+    end
+  end
+
 end

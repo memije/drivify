@@ -16,10 +16,10 @@
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
-                <table class="table table-striped table-bordered">
+                <table class="table table-hover" width="100%">
                   <thead>
                   <tr>
-                    <th class="text-center">ID</th>
+                    <th class="text-left">ID</th>
                     <th class="text-center">Tipo de Evaluación</th>
                     <th class="text-center">Pregunta</th>
                     <th class="text-center">Número de Respuestas</th>
@@ -27,22 +27,22 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <% @questions.each do |question| %>
-                    <tr>
-                      <td class="text-center"><%= question.id %></td>
-                      <td class="text-center"><%= question.quiz_type.nombre %></td>
-                      <td class="text-justify"><%= question.pregunta %></td>
-                      <td class="text-center"><span class="badge badge-info"><%= question.answers.count %></span></td>
-                      <td class="text-center">
-                        <%= link_to edit_question_path(question.id) do %>
-                          <span class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-pencil"></i></span>
-                        <% end %>
-                        <%= link_to destroy_question_path(question.id), method: :delete, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
-                          <span class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fa fa-trash"></i></span>
-                        <% end %>
-                      </td>
-                    </tr>
-                  <% end %>
+                    <% @questions.each do |question| %>
+                      <tr>
+                        <td class="text-left"><%= question.id %></td>
+                        <td class="text-center"><%= question.quiz_type.nombre %></td>
+                        <td class="text-justify"><%= question.pregunta %></td>
+                        <td class="text-center"><span class="badge badge-info"><%= question.answers.count %></span></td>
+                        <td class="text-center">
+                          <%= link_to edit_question_path(question.id) do %>
+                            <span class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-pencil"></i></span>
+                          <% end %>
+                          <%= link_to destroy_question_path(question.id), method: :delete, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
+                            <span class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fa fa-trash"></i></span>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
                   </tbody>
                 </table>
               </div>
@@ -58,38 +58,8 @@
   <script>
 
       $(function () {
-
-          $('.table').DataTable({
-              language:{
-                  "sProcessing":     "Procesando...",
-                  "sLengthMenu":     "Mostrar _MENU_ registros",
-                  "sZeroRecords":    "No se encontraron resultados",
-                  "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                  "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                  "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                  "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                  "sInfoPostFix":    "",
-                  "sSearch":         "Buscar:",
-                  "sUrl":            "",
-                  "sInfoThousands":  ",",
-                  "sLoadingRecords": "Cargando...",
-                  "oPaginate": {
-                      "sFirst":    "Primero",
-                      "sLast":     "Último",
-                      "sNext":     "Siguiente",
-                      "sPrevious": "Anterior"
-                  },
-                  "oAria": {
-                      "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                  }
-              },
-              pageLength: 10,
-              responsive: true,
-              "columnDefs": [
-                  { "width": "2%", "targets": 0 }
-              ]
-          });
+          <%= render "js_partials/dataTable.js" %>
+          $.select2("select");
       });
 
   </script>

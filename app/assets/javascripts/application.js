@@ -21,4 +21,7 @@
 //= require iziToast
 //= require sweetAlert/sweetalert.min.js
 //= require dataTables/datatables.min.js
+//= require select2/select2.js
+//= require select2/i18n/es.js
+//= require jquerySteps/jquery.steps.js
 //= require_tree .

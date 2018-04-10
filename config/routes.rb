@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'quiz_user/index'
+
+  get 'quiz_eval/index'
+
+  get 'quiz_controller_eval/index'
+
+  get 'eval_quiz_controller/index'
+
+  get 'quiz_controller/index'
+
   get 'quiz_type_admin/index'
 
   get 'quiz_type_admin/new'
@@ -29,6 +39,7 @@ Rails.application.routes.draw do
 
   get 'home' => 'home#index', as: :home
 
+  # modulos para administradores
   scope "/admin" do
 
     # modulo de administracion de usuarios
@@ -70,8 +81,31 @@ Rails.application.routes.draw do
       post '/:id' => 'answer_admin#update', as: :edit_answer_update
       delete '/:id' => 'answer_admin#destroy', as: :destroy_answer
     end
+  end
+
+  # modulos para evaluadores
+  scope "/eval" do
+
+    # modulo de evaluaciones teoricas
+    scope "/evaluaciones_teoricas", evaluaciones_teoricas_scope: true do
+      get '/' => 'quiz_eval#index', as: :quiz_eval
+      post '/:id' => 'quiz_eval#validar_eval', as: :validate_quiz_eval
+    end
+
+    # modulo de evaluaciones practicas
+    scope "/evaluaciones_practicas", evaluaciones_practicas_scope: true do
+    end
 
   end
+
+  # modulos para usuarios
+  scope "/usuario" do
+
+    # modulo para evaluaciones teoricas
+    scope "/evaluaciones_teoricas", evaluaciones_teoricas_scope: true do
+      get '/' => 'quiz_user#index', as: :quiz_user      
+    end
+  end  
 
   root 'home#index'
 
