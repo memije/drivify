@@ -44,10 +44,10 @@
                             <td class="text-center"><span class="badge badge-info"><%= user.requested_quizzes.count %></span></td>
                             <td class="text-center">
                               <%= link_to edit_user_path(user.id) do %>
-                                <span class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-pencil"></i></span>
+                                <span class="btn btn-mg btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-pencil"></i></span>
                               <% end %>
                               <%= link_to destroy_user_path(user.id), method: :delete, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
-                                <span class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fa fa-trash"></i></span>
+                                <span class="btn btn-mg btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fa fa-trash"></i></span>
                               <% end %>
                             </td>
                           <% else %>

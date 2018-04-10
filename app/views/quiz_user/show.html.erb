@@ -1,0 +1,65 @@
+<div class="wrapper wrapper-content animated fadeInDown">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>Evaluación Teórica</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_for :answer, html: {id: "quiz_form", role: "form"} do |f| %>
+                <div id="quiz_steps">
+                  <% @quiz.quiz_type.questions.each.with_index(1)  do |question, index| %>
+                    <h3> <%= "Pregunta #{index}" %> </h3>
+                    <section class="animated fadeInUp">
+                      <h4> <%= question.pregunta %> </h4>
+                      <div class="form-group">
+                        <% question.answers.each do |answer| %>                      
+                          <div class="pretty p-default p-round">
+                            <%= f.radio_button question.id, answer.id %>
+                            <div class="state p-primary-o">
+                              <%= f.label question.id, answer.respuesta, :value => answer.id %>
+                            </div>
+                          </div>                                                                          
+                        <% end %>
+                      </div>
+                    </section>
+                  <% end %>
+                </div>                                
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :script do %>
+  <script>
+
+      $(function () {
+          $("#quiz_steps").steps({
+            // Appearance
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "none",
+            // Templates
+            titleTemplate: '#title#',
+            // Labels
+            labels:{
+              finish: "Enviar",
+              next: "Siguiente",
+              previous: "Anterior",
+              loading: "Cargando..."
+            },            
+            // Behaviour
+            autoFocus: true,
+            forceMoveForward: true
+          });
+          // $.select2("select");
+      });           
+
+  </script>
+<% end %>
