@@ -24,4 +24,7 @@
 //= require select2/select2.js
 //= require select2/i18n/es.js
 //= require jquerySteps/jquery.steps.js
+//= require jqueryValidate/jquery.validate.js
+//= require jqueryValidate/additional-methods.js
+//= require jqueryValidate/i18n/messages_es.js
 //= require_tree .
