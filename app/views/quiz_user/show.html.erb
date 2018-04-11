@@ -15,18 +15,18 @@
                     <section class="animated fadeInUp">
                       <h4> <%= question.pregunta %> </h4>
                       <div class="form-group">
-                        <% question.answers.each do |answer| %>                      
+                        <% question.answers.order(:inciso).each do |answer| %>
                           <div class="pretty p-default p-round">
-                            <%= f.radio_button question.id, answer.id %>
+                            <%= f.radio_button question.id, answer.id, required: "true" %>
                             <div class="state p-primary-o">
-                              <%= f.label question.id, answer.respuesta, :value => answer.id %>
+                              <%= f.label question.id, "#{answer.inciso}) #{answer.respuesta}", :value => answer.id %>
                             </div>
-                          </div>                                                                          
+                          </div>
                         <% end %>
-                      </div>
+                      </div>                      
                     </section>
                   <% end %>
-                </div>                                
+                </div>
               <% end %>
             </div>
           </div>
@@ -39,27 +39,63 @@
 <% content_for :script do %>
   <script>
 
-      $(function () {
-          $("#quiz_steps").steps({
-            // Appearance
-            headerTag: "h3",
-            bodyTag: "section",
-            transitionEffect: "none",
-            // Templates
-            titleTemplate: '#title#',
-            // Labels
-            labels:{
-              finish: "Enviar",
-              next: "Siguiente",
-              previous: "Anterior",
-              loading: "Cargando..."
-            },            
-            // Behaviour
-            autoFocus: true,
-            forceMoveForward: true
-          });
-          // $.select2("select");
-      });           
+    var lock = true;
+
+    function unlock(){
+      lock = false;
+      return !lock;
+    }
+
+    window.onbeforeunload = function(){
+      if(lock){
+        return 'ok';
+      }
+    }
+
+    $(function () {
+
+        var form = $("#quiz_form");
+        form.validate({
+          errorPlacement: function(error, element){
+            if (element.attr("type") == "radio") {
+                error.appendTo(element.parent().parent());
+            } else {
+                error.insertAfter(element);
+            }
+          }
+        }).settings.ignore = ":disabled,:hidden";
+
+        $("#quiz_steps").steps({
+          // Appearance
+          headerTag: "h3",
+          bodyTag: "section",
+          transitionEffect: "none",
+          stepsOrientation: "vertical",
+          // Templates
+          titleTemplate: '#title#',
+          // Labels
+          labels:{
+            finish: "Enviar",
+            next: "Siguiente",
+            previous: "Anterior",
+            loading: "Cargando..."
+          },
+          // Behaviour
+          autoFocus: true,
+          forceMoveForward: true,
+          // Events
+          onStepChanging: function(e, currentIndex, newIndex){                        
+            return form.valid();
+          },
+          onFinishing: function(event, index){
+            return form.valid() && unlock();
+          },
+          onFinished: function(event, index){            
+            $('#quiz_form').submit();
+          }
+        });
+        // $.select2("select");
+    });
 
   </script>
 <% end %>

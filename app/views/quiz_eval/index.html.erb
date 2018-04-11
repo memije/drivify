@@ -26,49 +26,49 @@
                   </thead>
                   <tbody>
                     <% @quizzes.each do |quiz| %>
-                      <tr>
-                        <td class="text-left"><%= quiz.id %></td>
-                        <td class="text-justify"><%= quiz.user.nombre_completo %></td>
-                        <td class="text-justify"><%= quiz.user.curp %></td>
-                        <% if quiz.evaluator.blank? %>
-                          <td class="text-left"><span class="text-danger">Sin evaluador asignado</span></td>
-                        <% elsif quiz.evaluator.id == current_user.id %>
-                          <td class="text-left"><span class="text-info"><%= quiz.evaluator.nombre_completo %></span></td>
-                        <% else  %>
-                          <td class="text-left"><%= quiz.evaluator.nombre_completo %></td>
-                        <% end %>
-                        <td class="text-left"><%= quiz.quiz_type.nombre %></td>
-                        <td class="text-left"><%= quiz.created_at.strftime('%d/%m/%Y') %> <small><%= quiz.created_at.strftime('%I:%M:%S %p') %></small></td>
-                        <% if quiz.fecha_aplicacion.blank? %>
-                          <td class="text-left">-</td>
-                        <% else %>
-                          <td class="text-left"><%= quiz.fecha_aplicacion.strftime('%d/%m/%Y') %> <small><%= quiz.fecha_aplicacion.strftime('%I:%M:%S %p') %></small></td>
-                        <% end %>
-                        <% if quiz.puntaje.blank? %>
-                          <td class="text-right">-</td>
-                        <% else %>
-                          <td class="text-right"><%= "#{'%.2f' % quiz.puntaje}" %></td>
-                        <% end %>
-                        <% if quiz.evaluator.blank? && quiz.fecha_aplicacion.blank? && quiz.puntaje.blank? %>
-                          <td class="text-center"><span class="label label-warning">Pendiente</span></td>
-                        <% elsif !quiz.evaluator.blank? && quiz.fecha_aplicacion.blank? && quiz.puntaje.blank? %>
-                          <td class="text-center"><span class="label label-success">Autorizada</span></td>
-                        <% else %>
-                          <td class="text-center"><span class="label label-info">Presentada</span></td>
-                        <% end %>
-                        <td class="text-center">
-                          <% if quiz.evaluator.blank? && quiz.user.id != current_user.id %>
-                            <%= link_to validate_quiz_eval_path(quiz.id), method: :post, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
-                              <span class="btn btn-sm btn-mg btn-primary" data-toggle="tooltip" data-placement="top" title="Validar"><i class="fa fa-check-square-o"></i></span>
-                            <% end %>
+                      <% if quiz.evaluator.blank? || quiz.evaluator.id == current_user.id %>
+                        <tr>
+                          <td class="text-left"><%= quiz.id %></td>
+                          <td class="text-justify"><%= quiz.user.nombre_completo %></td>
+                          <td class="text-justify"><%= quiz.user.curp %></td>
+                          <% if quiz.evaluator.blank? %>
+                            <td class="text-left"><span class="text-danger">Sin evaluador asignado</span></td>
+                          <% elsif quiz.evaluator.id == current_user.id %>
+                            <td class="text-left"><span class="text-navy"><%= quiz.evaluator.nombre_completo %></span></td>                          
                           <% end %>
-                          <% if !quiz.fecha_aplicacion.blank? && !quiz.puntaje.blank? %>
-                            <span class="btn btn-sm btn-mg btn-success" data-toggle="tooltip" data-placement="top" title="Consultar"><i class="fa fa-search"></i></span>
-                            <%= link_to root_path, method: :delete, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
-                            <% end %>
+                          <td class="text-left"><%= quiz.quiz_type.nombre %></td>
+                          <td class="text-left"><%= quiz.created_at.strftime('%d/%m/%Y') %> <small><%= quiz.created_at.strftime('%I:%M:%S %p') %></small></td>
+                          <% if quiz.fecha_aplicacion.blank? %>
+                            <td class="text-left">-</td>
+                          <% else %>
+                            <td class="text-left"><%= quiz.fecha_aplicacion.strftime('%d/%m/%Y') %> <small><%= quiz.fecha_aplicacion.strftime('%I:%M:%S %p') %></small></td>
                           <% end %>
-                        </td>
-                      </tr>
+                          <% if quiz.puntaje.blank? %>
+                            <td class="text-right">-</td>
+                          <% else %>
+                            <td class="text-right"><%= "#{'%.2f' % quiz.puntaje}" %></td>
+                          <% end %>
+                          <% if quiz.evaluator.blank? && quiz.fecha_aplicacion.blank? && quiz.puntaje.blank? %>
+                            <td class="text-center"><span class="label label-warning">Pendiente</span></td>
+                          <% elsif !quiz.evaluator.blank? && quiz.fecha_aplicacion.blank? && quiz.puntaje.blank? %>
+                            <td class="text-center"><span class="label label-success">Autorizada</span></td>
+                          <% else %>
+                            <td class="text-center"><span class="label label-info">Presentada</span></td>
+                          <% end %>
+                          <td class="text-center">
+                            <% if quiz.evaluator.blank? && quiz.user.id != current_user.id %>
+                              <%= link_to validate_quiz_eval_path(quiz.id), method: :post, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
+                                <span class="btn btn-sm btn-mg btn-primary" data-toggle="tooltip" data-placement="top" title="Validar"><i class="fa fa-check-square-o"></i></span>
+                              <% end %>
+                            <% end %>
+                            <% if !quiz.fecha_aplicacion.blank? && !quiz.puntaje.blank? %>
+                              <span class="btn btn-sm btn-mg btn-success" data-toggle="tooltip" data-placement="top" title="Consultar"><i class="fa fa-search"></i></span>
+                              <%= link_to root_path, method: :delete, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
+                              <% end %>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
                     <% end %>
                   </tbody>
                 </table>

@@ -17,7 +17,7 @@
 					<% end %>
           <div class="row">
 							<% @quizzes.each do |quiz| %>
-							<div class="col-lg-6">
+							<div class="col-lg-4">
 								<% if quiz.get_estado == 1 %>
 									<div class="widget-head-color-box yellow-bg p-lg text-center">
 										<h2 class="font-bold no-margins">
@@ -45,8 +45,8 @@
 								<div class="widget-text-box">
 									<!-- <h4 class="media-heading">ID: <%= quiz.id %> </h4> -->
 									<table class="table">
-										<col style="width:40%">
-										<col style="width:60%">	
+										<col style="width:50%">
+										<col style="width:50%">	
 										<tbody>
 											<tr>
 													<td><b>Evaluador: </b></td>
@@ -78,8 +78,10 @@
 												<span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-pencil-square-o"></i> Presentar Evaluación</span>
 											<% end %>
 										<% elsif quiz.get_estado == 3 %>
-											<span class="btn btn-xs btn-mg btn-success"><i class="fa fa-search"></i> Consultar Evaluación</span>
-											<span class="btn btn-xs btn-mg btn-success"><i class="fa fa-search"></i> Consultar Evaluación</span>
+											<span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>
+											<%= link_to quiz_user_consulta_path(quiz.id) do %>
+												<span class="btn btn-xs btn-mg btn-success"><i class="fa fa-search"></i> Consultar Evaluación</span>
+											<% end %>
 										<% end %>
 									</div>
 								</div>
