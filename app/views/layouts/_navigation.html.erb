@@ -62,6 +62,11 @@
                   <i class="fa fa-list-ol"></i> <span class="nav-label">Evaluaciones Teóricas</span>
                 <% end %>
               </li>
+              <li class="<%= 'active' if params[:simulaciones_scope].eql? true %>">
+                <%= link_to simulation_eval_path do %>
+                  <i class="fa fa-car"></i> <span class="nav-label">Evaluaciones Prácticas</span>
+                <% end %>
+              </li>
             <% end %>
 
             <%# Modulos de usuarios %>

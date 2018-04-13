@@ -33,3 +33,26 @@ body{
   display: block;    
   margin: 1em 0;
 }
+
+.select2-container--default .select2-selection--single[aria-expanded="true"],.select2-dropdown{
+  border-color: $navy;
+}
+
+.md-skin .navbar-fixed-top, .md-skin .navbar-static-top {
+  background-color: $navy !important;
+}
+
+.backstretch{
+  background-image: linear-gradient(to top left, #673AB7, #69F0AE);
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: $navy_pale;
+}
+
+.backstretch-item{
+  display: block !important;
+  background-image: image_url('car-background.jpg');
+  opacity: 0.25;
+  background-size: 100%;
+}

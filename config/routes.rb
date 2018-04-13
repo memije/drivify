@@ -95,6 +95,7 @@ Rails.application.routes.draw do
 
     # modulo de evaluaciones practicas
     scope "/evaluaciones_practicas", evaluaciones_practicas_scope: true do
+      get '/' => 'simulation_eval#index', as: :simulation_eval
     end
 
   end
@@ -116,8 +117,8 @@ Rails.application.routes.draw do
     scope "/evaluaciones_practicas", simulaciones_scope: true do
       get '/' => 'simulation_user#index', as: :simulation_user
       get '/nueva/:id' => 'simulation_user#new', as: :'simulation_user_new'
-      post '/update_hours' => 'simulation_user#update_hours', as: :simulation_user_update_hours
       post '/nueva/:id' => 'simulation_user#create', as: :simulation_user_create
+      post '/update_hours' => 'simulation_user#update_hours', as: :simulation_user_update_hours
     end
 
   end

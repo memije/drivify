@@ -29,8 +29,8 @@
                       <% if quiz.evaluator.blank? || quiz.evaluator.id == current_user.id %>
                         <tr>
                           <td class="text-left"><%= quiz.id %></td>
-                          <td class="text-justify"><%= quiz.user.nombre_completo %></td>
-                          <td class="text-justify"><%= quiz.user.curp %></td>
+                          <td class="text-left"><%= quiz.user.nombre_completo %></td>
+                          <td class="text-left"><%= quiz.user.curp %></td>
                           <% if quiz.evaluator.blank? %>
                             <td class="text-left"><span class="text-danger">Sin evaluador asignado</span></td>
                           <% elsif quiz.evaluator.id == current_user.id %>
