@@ -71,3 +71,6 @@ gem "recaptcha", require: "recaptcha/rails"
 
 # Jquery Rails
 gem "jquery-rails"
+
+# user agent
+gem 'useragent'

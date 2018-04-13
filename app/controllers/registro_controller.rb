@@ -1,4 +1,7 @@
 class RegistroController < ApplicationController
+
+  before_action :browser_version
+
   def new
     # @user = User.new
     render layout: 'empty'

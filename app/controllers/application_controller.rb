@@ -1,9 +1,25 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery with: :exception
 
-  helper_method :user_signed_in?, :current_user
+  helper_method :user_signed_in?, :current_user, :browser_version
 
   protected
+
+  Browser = Struct.new(:browser, :version)
+
+  SupportedBrowsers = [
+      Browser.new('Safari', '6.0.2'),
+      Browser.new('Firefox', '19.0.2'),
+      Browser.new('Chrome', '25.0.1364.160')
+  ]
+
+  def browser_version
+    user_agent = UserAgent.parse(request.user_agent)
+    unless SupportedBrowsers.detect { |browser| user_agent >= browser }
+      redirect_to error_ie_path and return
+    end
+  end
 
   def authenticate_user
     if current_user.blank?

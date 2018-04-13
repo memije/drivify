@@ -1,6 +1,7 @@
 class SessionController < ApplicationController
 
   # before_action :authenticate_user, only: [:new,:create]
+  before_action :browser_version
 
   def new
     render layout: 'empty'

@@ -1,10 +1,10 @@
 class QuizUserController < ApplicationController
 
-  before_action :authenticate_user, :validate_user_privileges
+  before_action :authenticate_user, :validate_user_privileges, :browser_version
 
   def index
-    @quizzes = Quiz.where(user: current_user)
-    @active_quizzes = Quiz.where(user: current_user, fecha_aplicacion: nil)
+    @quizzes = current_user.requested_quizzes
+    @active_quizzes = Quiz.active_quizzes(@quizzes)
   end
 
   def create
@@ -14,7 +14,7 @@ class QuizUserController < ApplicationController
     if @quiz.save
       flash[:notice] = "La solicitud ha sido registrada exitosamente."
     else
-      flash[:error] = @answer.errors.full_messages.to_sentence
+      flash[:error] = @quiz.errors.full_messages.to_sentence
     end
     redirect_to quiz_user_path
   end
@@ -29,7 +29,7 @@ class QuizUserController < ApplicationController
 
   def consulta
     @quiz = Quiz.find(params[:id])    
-    @userAnswers = UserAnswer.where(quiz: @quiz);
+    @user_answers = UserAnswer.where(quiz: @quiz)
   end
 
   # def destroy
@@ -39,34 +39,28 @@ class QuizUserController < ApplicationController
   # end
 
   def save
-
-    userAnswers = Array.new
+    user_answers = []
     count = 0
-
     params[:answer].each do |pregunta, respuesta|
-      userAnswer = UserAnswer.new
-      userAnswer.quiz = Quiz.find(params[:id])
-      userAnswer.question = Question.find(pregunta)
-      userAnswer.answer = Answer.find(respuesta)
-
-      if userAnswer.save
-        userAnswers.push(userAnswer)
-        if userAnswer.answer.correcta
+      user_answer = UserAnswer.new
+      user_answer.quiz = Quiz.find(params[:id])
+      user_answer.question = Question.find(pregunta)
+      user_answer.answer = Answer.find(respuesta)
+      if user_answer.save
+        user_answers.push(user_answer)
+        if user_answer.answer.correcta
           count += 1
         end
       else
-        flash[:error] = userAnswer.errors.full_messages.to_sentence
+        flash[:error] = user_answer.errors.full_messages.to_sentence
         redirect_to quiz_user_path
       end
       quiz = Quiz.find(params[:id])
       quiz.fecha_aplicacion = DateTime.now
-      quiz.puntaje = (count*10)/quiz.quiz_type.questions.count
+      quiz.puntaje = (count * 10) / quiz.quiz_type.questions.count
       quiz.save
     end
-
     flash[:notice] = "Las respuestas han sido registradas exitosamente."
     redirect_to quiz_user_path
-
   end
-
 end
