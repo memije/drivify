@@ -1,0 +1,2 @@
+module SimulationUserHelper
+end

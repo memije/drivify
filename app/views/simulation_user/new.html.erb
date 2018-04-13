@@ -1,0 +1,63 @@
+<div class="wrapper wrapper-content animated fadeInDown">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5> Agendar nueva cita </h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_for :appointment do |f| %>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Fecha de Presentación</label>
+                  <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <%= f.date_field :fecha, class:"form-control", required:"true", min:"#{DateTime.now}" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Hora de Presentación</label>
+                  <%= f.select :hora,{},{},{class:"form-control",disabled:"true", required:"true"} %>
+                </div>
+                <%= f.submit "Enviar", class: "btn btn-primary" %>
+                <%= link_to quiz_user_path do %>
+                  <span class="btn btn-danger">Cancelar</span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :script do %>
+  <script>
+    $(function(){
+        $('#appointment_fecha').change(function(e){
+            var day = new Date($(this).val()).getUTCDay();
+            if(day === 0 || day === 6){
+                this.setCustomValidity('Por favor, selecciona un día entre semana.');
+                $('#appointment_hora').empty().prop("disabled","true");
+            }else{
+                $.ajax({
+                    url: '<%= simulation_user_update_hours_url %>',
+                    method: 'POST',
+                    data: {
+                        fecha: $(this).val()
+                    }
+                }).done(function(data){
+                    $('#appointment_hora').empty().prop("disabled",false);
+                    $.each(data, function (index, element){
+                        var opt = '<option value="'+element.id+'">'+element.hora_inicio+' - '+element.hora_fin+'</option>';
+                        $('#appointment_hora').append(opt);
+                    });
+                });
+            }
+            // simulation_user_update_hours
+        });
+    });
+  </script>
+<% end %>

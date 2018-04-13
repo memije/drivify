@@ -62,8 +62,8 @@
                               <% end %>
                             <% end %>
                             <% if !quiz.fecha_aplicacion.blank? && !quiz.puntaje.blank? %>
-                              <span class="btn btn-sm btn-mg btn-success" data-toggle="tooltip" data-placement="top" title="Consultar"><i class="fa fa-search"></i></span>
-                              <%= link_to root_path, method: :delete, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
+                              <%= link_to quiz_eval_show_path(quiz.id) do %>
+                                <span class="btn btn-sm btn-mg btn-success" data-toggle="tooltip" data-placement="top" title="Consultar"><i class="fa fa-search"></i></span>
                               <% end %>
                             <% end %>
                           </td>

@@ -89,6 +89,7 @@ Rails.application.routes.draw do
     # modulo de evaluaciones teoricas
     scope "/evaluaciones_teoricas", evaluaciones_teoricas_scope: true do
       get '/' => 'quiz_eval#index', as: :quiz_eval
+      get '/:id' => 'quiz_eval#show', as: :quiz_eval_show
       post '/:id' => 'quiz_eval#validar_eval', as: :validate_quiz_eval
     end
 
@@ -110,7 +111,18 @@ Rails.application.routes.draw do
       post '/evaluacion/:id' => 'quiz_user#save', as: :quiz_user_save
       # delete '/' => 'quiz_user#destroy', as: :quiz_user_destroy
     end
-  end  
+
+    # modulo para simulaciones
+    scope "/evaluaciones_practicas", simulaciones_scope: true do
+      get '/' => 'simulation_user#index', as: :simulation_user
+      get '/nueva/:id' => 'simulation_user#new', as: :'simulation_user_new'
+      post '/update_hours' => 'simulation_user#update_hours', as: :simulation_user_update_hours
+      post '/nueva/:id' => 'simulation_user#create', as: :simulation_user_create
+    end
+
+  end
+
+  get '/error_ie' => 'error#ie', as: :error_ie
 
   root 'home#index'
 

@@ -4,6 +4,7 @@ class Quiz < ApplicationRecord
   belongs_to :evaluator, :class_name => 'User', :foreign_key => 'evaluator_id', optional: true
   has_many :user_answers, :dependent => :destroy
   has_one :simulation, :dependent => :destroy
+  has_one :appointment, :dependent => :destroy, :through => :simulation
 
   def get_color
     if evaluator.blank? && fecha_aplicacion.blank? && puntaje.blank?
@@ -23,6 +24,14 @@ class Quiz < ApplicationRecord
     else
       3
     end
+  end
+
+  def self.active_quizzes(quizzes)
+    active_quizzes = []
+    quizzes.each do |quiz|
+      active_quizzes.push(quiz) if quiz.fecha_aplicacion.blank? || (!quiz.simulation.blank? && quiz.simulation.fecha_aplicacion.blank?)
+    end
+    return active_quizzes
   end
 
 end

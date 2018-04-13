@@ -1,0 +1,71 @@
+<div class="wrapper wrapper-content animated fadeInDown">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>Evaluaciones Prácticas de <%= current_user.nombre_completo %></h5>
+        </div>
+        <div class="ibox-content">
+          <% if @simulations.count == 0 %>
+            <h1 class="p-lg text-muted">No cuentas con evaluaciones prácticas registradas.</h1>
+          <% end %>
+          <div class="row">
+            <% @simulations.each do |simulation| %>
+              <div class="col-lg-4">
+                <% if simulation.get_estado == 1 %>
+                  <div class="widget-head-color-box blue-bg p-lg text-center">
+                    <h2 class="font-bold no-margins">
+                      Evaluación Práctica Agendada
+                    </h2>
+                    <small>Solicitud realizada el <%= simulation.created_at.strftime("%d/%m/%Y") %> a las <%= simulation.created_at.strftime('%I:%M:%S %p') %></small>
+                  </div>
+                <% else %>
+                  <div class="widget-head-color-box lazur-bg p-lg text-center">
+                    <h2 class="font-bold no-margins">
+                      Evaluación Práctica Presentada
+                    </h2>
+                    <small>Solicitud realizada el <%= simulation.created_at.strftime("%d/%m/%Y") %> a las <%= simulation.created_at.strftime('%I:%M:%S %p') %></small>
+                  </div>
+                <% end %>
+                <div class="widget-text-box">
+                  <div class="row p-w-xs">
+                    <hr>
+                    <div class="col-lg-4"><b>Cita:</b></div>
+                    <div class="col-lg-8"><%= "#{simulation.appointment.fecha.strftime("%d/%m/%Y")}, #{simulation.appointment.hour.rango_horas}" %></div>
+                  </div>
+                  <div class="row p-w-xs">
+                    <hr>
+                    <div class="col-lg-4"><b>Obstaculos Derribados:</b></div>
+                    <% if simulation.get_estado > 1 %>
+                      <div class="col-lg-8"><%= simulation.obstaculos_derribados %></div>
+                    <% else%>
+                      <div class="col-lg-8">-</div>
+                    <% end %>
+                  </div>
+                  <div class="row p-w-xs">
+                    <hr>
+                    <div class="col-lg-4"><b>Velocidad Excedida:</b></div>
+                    <% if simulation.get_estado > 1 %>
+                      <div class="col-lg-8"><%= "#{simulation.velocidad_excedida} veces" %></div>
+                    <% else%>
+                      <div class="col-lg-8">-</div>
+                    <% end %>
+                  </div>
+                  <div class="row p-w-xs">
+                    <hr>
+                    <div class="col-lg-4"><b>Tiempo de Simulación:</b></div>
+                    <% if simulation.get_estado > 1 %>
+                      <div class="col-lg-8"><%= simulation.duracion_horas_minutos %></div>
+                    <% else%>
+                      <div class="col-lg-8">-</div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

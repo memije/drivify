@@ -8,26 +8,26 @@
         <div class="ibox-content">
           <div class="row">
             <div class="col-md-12">
-              <% @quiz.quiz_type.questions.each.with_index(1)  do |question, index| %>                
-                <h3> <%= "Pregunta #{index}" %> </h4>
+              <% @quiz.quiz_type.questions.each.with_index(1)  do |question, index| %>
+                <h3> <%= "Pregunta #{index}" %> </h3>
                 <h4> <%= question.pregunta %> </h4>
-                <% question.answers.order(:inciso).each do |answer| %>    
-                  <% @userAnswers.each do |userAnswer| %>      
+                <% question.answers.order(:inciso).each do |answer| %>
+                  <% @user_answers.each do |userAnswer| %>
                     <% if userAnswer.question == question %>
                       <%# Si la respuesta es la respuesta que dio el usuario%>
                       <% if answer.correcta %>
-                        <p class="text-navy"><%= "#{answer.inciso}) #{answer.respuesta}" %></p>                              
+                        <p class="text-navy"><%= "#{answer.inciso}) #{answer.respuesta}" %></p>
                       <% elsif userAnswer.answer == answer %>
-                        <p class="text-danger"><%= "#{answer.inciso}) #{answer.respuesta}" %></p>                              
+                        <p class="text-danger"><%= "#{answer.inciso}) #{answer.respuesta}" %></p>
                       <% else %>
-                        <p><%= "#{answer.inciso}) #{answer.respuesta}" %></p>                              
+                        <p><%= "#{answer.inciso}) #{answer.respuesta}" %></p>
                       <% end %>
                     <% end %>
                   <% end %>
-                <% end %>  
-                <div class="hr-line-dashed"></div>              
-              <% end %>             
-              <h3 class="p-lg bg-primary">Puntaje Final: <%= @quiz.puntaje %> </h3>
+                <% end %>
+                <div class="hr-line-dashed"></div>
+              <% end %>
+              <h2 class="p-md bg-<%= @quiz.puntaje >= 8 ? "primary" : "danger" %>">Puntaje Final: <%= @quiz.puntaje %></h2>
             </div>
           </div>
         </div>

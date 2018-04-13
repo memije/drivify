@@ -15,6 +15,9 @@
 							</div>
 						</div>
 					<% end %>
+          <% if @quizzes.count == 0 %>
+            <h1 class="p-lg text-muted">No cuentas con evaluaciones teóricas registradas.</h1>
+          <% end %>
           <div class="row">
 							<% @quizzes.each do |quiz| %>
 							<div class="col-lg-4">
@@ -43,47 +46,56 @@
 									</div>
 								<% end %>
 								<div class="widget-text-box">
-									<!-- <h4 class="media-heading">ID: <%= quiz.id %> </h4> -->
-									<table class="table">
-										<col style="width:50%">
-										<col style="width:50%">	
-										<tbody>
-											<tr>
-													<td><b>Evaluador: </b></td>
-													<% if quiz.get_estado > 1 %>
-														<td><%= quiz.evaluator.nombre_completo %></td>
-													<% else%>
-														<td><span class="text-danger">Sin evaluador asignado</span><td>
-													<% end %>
-											</tr>
-											<tr>
-													<td><b>Tipo de Examen: </b></td>
-													<td> <%= quiz.quiz_type.nombre%> </td>
-											</tr>
-											<tr>
-													<td><b>Puntaje: </b></td>
-													<% if quiz.get_estado == 3 %>
-														<td><%= quiz.puntaje %></td>
-													<% else%>
-														<td>-<td>
-													<% end %>
-											</tr>
-										</tbody>
-									</table>
-									<div class="text-right">										
-										<% if quiz.get_estado == 1 %>
-											<span class="btn btn-xs btn-mg btn-primary" disabled="true"><i class="fa fa-pencil-square-o"></i> Presentar Evaluación</span>
-										<% elsif quiz.get_estado == 2 %>
-											<%= link_to quiz_user_show_path(quiz.id) do %>
-												<span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-pencil-square-o"></i> Presentar Evaluación</span>
-											<% end %>
-										<% elsif quiz.get_estado == 3 %>
-											<span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>
-											<%= link_to quiz_user_consulta_path(quiz.id) do %>
-												<span class="btn btn-xs btn-mg btn-success"><i class="fa fa-search"></i> Consultar Evaluación</span>
-											<% end %>
-										<% end %>
-									</div>
+                  <div class="row p-w-xs">
+                    <hr>
+                    <div class="col-lg-4"><b>Evaluador:</b></div>
+                    <% if quiz.get_estado > 1 %>
+                      <div class="col-lg-8"><%= quiz.evaluator.nombre_completo %></div>
+                    <% else %>
+                      <div class="col-lg-8"><span class="text-danger">Sin evaluador asignado</span></div>
+                    <% end %>
+                  </div>
+                  <div class="row p-w-xs">
+                    <hr>
+                    <div class="col-lg-4"><b>Tipo de Examen:</b></div>
+                    <div class="col-lg-8"><%= quiz.quiz_type.nombre%></div>
+                  </div>
+                  <div class="row p-w-xs">
+                    <hr>
+                    <div class="col-lg-4"><b>Puntaje:</b></div>
+                    <% if quiz.get_estado == 3 %>
+                      <% if quiz.puntaje >= 8 %>
+                        <div class="col-lg-8 text-navy"><%= quiz.puntaje %></div>
+                      <% else %>
+                        <div class="col-lg-8 text-danger"><%= quiz.puntaje %></div>
+                      <% end %>
+                    <% else%>
+                      <div class="col-lg-8">-</div>
+                    <% end %>
+                  </div>
+                  <div class="row p-h-xs">
+                    <div class="col-lg-12">
+                      <div class="text-right">
+                        <% if quiz.get_estado == 1 %>
+                          <span class="btn btn-xs btn-mg btn-primary" disabled="true"><i class="fa fa-pencil-square-o"></i> Presentar Evaluación</span>
+                        <% elsif quiz.get_estado == 2 %>
+                          <%= link_to quiz_user_show_path(quiz.id) do %>
+                            <span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-pencil-square-o"></i> Presentar Evaluación</span>
+                          <% end %>
+                        <% elsif quiz.get_estado == 3 %>
+                          <% if quiz.puntaje >= 8 && quiz.simulation.blank? %>
+                            <%= link_to simulation_user_new_path(quiz.id) do %>
+                              <span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-calendar"></i> Agendar Evaluación Práctica</span>
+                            <% end %>
+                          <% end %>
+                          <!--<span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>-->
+                          <%= link_to quiz_user_consulta_path(quiz.id) do %>
+                            <span class="btn btn-xs btn-mg btn-success"><i class="fa fa-search"></i> Consultar Evaluación</span>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
 								</div>
 							</div>
 						<% end %>

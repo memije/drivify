@@ -21,6 +21,18 @@ Role.create([
                 {nombre: 'USUARIO', descripcion: 'Usuario General'}
             ])
 
+Hour.create([
+                {hora_inicio: '09:00 AM', hora_fin: '10:00 AM'},
+                {hora_inicio: '10:00 AM', hora_fin: '11:00 AM'},
+                {hora_inicio: '11:00 AM', hora_fin: '12:00 PM'},
+                {hora_inicio: '12:00 PM', hora_fin: '01:00 PM'},
+                {hora_inicio: '01:00 PM', hora_fin: '02:00 PM'},
+                {hora_inicio: '02:00 PM', hora_fin: '03:00 PM'},
+                # Hora de comida de 3 a 4
+                {hora_inicio: '04:00 PM', hora_fin: '05:00 PM'},
+                {hora_inicio: '05:00 PM', hora_fin: '06:00 PM'},
+            ])
+
 
 # QuizType seed
 # (1..10).each do |index|
@@ -66,4 +78,7 @@ User.all.each do |user|
   end
 end
 
-Quiz.create(quiz_type: QuizType.order("RANDOM()").first, user: User.find(4), evaluator: User.find(2), fecha_aplicacion: DateTime.now, puntaje: 10)
+quiz = Quiz.create(quiz_type: QuizType.order("RANDOM()").first, user: User.find(4), evaluator: User.find(2), fecha_aplicacion: DateTime.now, puntaje: 10)
+simulation = Simulation.create(quiz: quiz)
+# simulation = Simulation.create(quiz: quiz, fecha_aplicacion: DateTime.now, obstaculos_derribados: 10, tiempo_simulacion: 10000000)
+appointment =  Appointment.create(simulation: simulation, fecha: DateTime.now, hour: Hour.order("RANDOM()").first)

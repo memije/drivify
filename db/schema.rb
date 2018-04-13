@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406162907) do
+ActiveRecord::Schema.define(version: 20180412223445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(version: 20180406162907) do
     t.datetime "updated_at", null: false
     t.string "inciso"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.date "fecha"
+    t.bigint "simulation_id"
+    t.bigint "hour_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hour_id"], name: "index_appointments_on_hour_id"
+    t.index ["simulation_id"], name: "index_appointments_on_simulation_id"
+  end
+
+  create_table "hours", force: :cascade do |t|
+    t.string "hora_inicio"
+    t.string "hora_fin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -60,8 +77,7 @@ ActiveRecord::Schema.define(version: 20180406162907) do
   create_table "simulations", force: :cascade do |t|
     t.integer "obstaculos_derribados"
     t.integer "velocidad_excedida"
-    t.integer "tiempo_simulacion"
-    t.datetime "cita"
+    t.bigint "tiempo_simulacion"
     t.datetime "fecha_aplicacion"
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
@@ -95,6 +111,8 @@ ActiveRecord::Schema.define(version: 20180406162907) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "appointments", "hours"
+  add_foreign_key "appointments", "simulations"
   add_foreign_key "questions", "quiz_types"
   add_foreign_key "quizzes", "quiz_types"
   add_foreign_key "quizzes", "users"

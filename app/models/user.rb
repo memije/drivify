@@ -6,6 +6,8 @@ class User < ApplicationRecord
   belongs_to :role
   has_many :requested_quizzes, :class_name => 'Quiz', :foreign_key => 'user_id', :dependent => :destroy
   has_many :evaluated_quizzes, :class_name => 'Quiz', :foreign_key => 'evaluator_id', :dependent => :destroy
+  has_many :simulations, through: :requested_quizzes
+  has_many :appointments, through: :simulations
 
   def nombre_completo
     "#{nombre} #{ap_paterno} #{ap_materno}"
