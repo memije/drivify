@@ -34,7 +34,7 @@
                           <% if quiz.evaluator.blank? %>
                             <td class="text-left"><span class="text-danger">Sin evaluador asignado</span></td>
                           <% elsif quiz.evaluator.id == current_user.id %>
-                            <td class="text-left"><span class="text-navy"><%= quiz.evaluator.nombre_completo %></span></td>                          
+                            <td class="text-left"><span class="text-success"><%= quiz.evaluator.nombre_completo %></span></td>
                           <% end %>
                           <td class="text-left"><%= quiz.quiz_type.nombre %></td>
                           <td class="text-left"><%= quiz.created_at.strftime('%d/%m/%Y') %> <small><%= quiz.created_at.strftime('%I:%M:%S %p') %></small></td>
@@ -51,19 +51,19 @@
                           <% if quiz.evaluator.blank? && quiz.fecha_aplicacion.blank? && quiz.puntaje.blank? %>
                             <td class="text-center"><span class="label label-warning">Pendiente</span></td>
                           <% elsif !quiz.evaluator.blank? && quiz.fecha_aplicacion.blank? && quiz.puntaje.blank? %>
-                            <td class="text-center"><span class="label label-success">Autorizada</span></td>
+                            <td class="text-center"><span class="label label-info">Autorizada</span></td>
                           <% else %>
-                            <td class="text-center"><span class="label label-info">Presentada</span></td>
+                            <td class="text-center"><span class="label label-success">Presentada</span></td>
                           <% end %>
                           <td class="text-center">
                             <% if quiz.evaluator.blank? && quiz.user.id != current_user.id %>
                               <%= link_to validate_quiz_eval_path(quiz.id), method: :post, data:{confirm: "Esta acción es irreversible, ¿Desea continuar?"} do %>
-                                <span class="btn btn-sm btn-mg btn-primary" data-toggle="tooltip" data-placement="top" title="Validar"><i class="fa fa-check-square-o"></i></span>
+                                <span class="btn btn-sm btn-mg btn-success" data-toggle="tooltip" data-placement="top" title="Validar"><i class="fa fa-check-square-o"></i></span>
                               <% end %>
                             <% end %>
                             <% if !quiz.fecha_aplicacion.blank? && !quiz.puntaje.blank? %>
                               <%= link_to quiz_eval_show_path(quiz.id) do %>
-                                <span class="btn btn-sm btn-mg btn-success" data-toggle="tooltip" data-placement="top" title="Consultar"><i class="fa fa-search"></i></span>
+                                <span class="btn btn-sm btn-mg btn-primary" data-toggle="tooltip" data-placement="top" title="Consultar"><i class="fa fa-search"></i></span>
                               <% end %>
                             <% end %>
                           </td>

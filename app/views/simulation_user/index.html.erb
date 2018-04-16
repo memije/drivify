@@ -13,14 +13,14 @@
             <% @simulations.each do |simulation| %>
               <div class="col-lg-4">
                 <% if simulation.get_estado == 1 %>
-                  <div class="widget-head-color-box blue-bg p-lg text-center">
+                  <div class="widget-head-color-box lazur-bg p-lg text-center">
                     <h2 class="font-bold no-margins">
                       Evaluación Práctica Agendada
                     </h2>
                     <small>Solicitud realizada el <%= simulation.created_at.strftime("%d/%m/%Y") %> a las <%= simulation.created_at.strftime('%I:%M:%S %p') %></small>
                   </div>
                 <% else %>
-                  <div class="widget-head-color-box lazur-bg p-lg text-center">
+                  <div class="widget-head-color-box blue-bg p-lg text-center">
                     <h2 class="font-bold no-margins">
                       Evaluación Práctica Presentada
                     </h2>

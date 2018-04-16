@@ -42,9 +42,9 @@
                         <td class="text-right"><%= simulation.get_estado <= 1 ? "-" : "#{simulation.velocidad_excedida} veces" %></td>
                         <td class="text-right"><%= simulation.get_estado <= 1 ? "-" : simulation.duracion_horas_minutos %></td>
                         <% if simulation.get_estado == 1 %>
-                          <td class="text-center"><span class="label label-success">Agendada</span></td>
+                          <td class="text-center"><span class="label label-info">Agendada</span></td>
                         <% else %>
-                          <td class="text-center"><span class="label label-info">Presentada</span></td>
+                          <td class="text-center"><span class="label label-success">Presentada</span></td>
                         <% end %>
                         <td class="text-center">
                           <% if simulation.get_estado == 2 %>
