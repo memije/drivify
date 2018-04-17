@@ -29,15 +29,17 @@
                 <div class="form-group">
                   <label><span class="text-danger">*</span>¿Es la respuesta correcta?</label>
                   <br>
-                  <div class="pretty p-default p-round">
+                  <div class="pretty p-icon p-round p-pulse">
                     <%= f.radio_button :correcta, true %>
                     <div class="state p-primary-o">
+                      <i class="icon mdi mdi-check"></i>
                       <%= f.label :correcta, "Si", :value => "true" %>
                     </div>
                   </div>
-                  <div class="pretty p-default p-round">
+                  <div class="pretty p-icon p-round p-pulse">
                     <%= f.radio_button :correcta, false %>
                     <div class="state p-primary-o">
+                      <i class="icon mdi mdi-check"></i>
                       <%= f.label :correcta, "No", :value => "false" %>
                     </div>
                   </div>

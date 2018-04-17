@@ -42,6 +42,7 @@
                 this.setCustomValidity('Por favor, selecciona un día entre semana.');
                 $('#appointment_hora').empty().prop("disabled","true");
             }else{
+                this.setCustomValidity('');
                 $.ajax({
                     url: '<%= simulation_user_update_hours_url %>',
                     method: 'POST',
