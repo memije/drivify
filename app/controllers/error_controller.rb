@@ -1,6 +1,6 @@
 class ErrorController < ApplicationController
 
-  layout false
+  layout 'empty'
 
   def error404
   end

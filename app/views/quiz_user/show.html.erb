@@ -16,9 +16,10 @@
                       <h4> <%= question.pregunta %> </h4>
                       <div class="form-group">
                         <% question.answers.order(:inciso).each do |answer| %>
-                          <div class="pretty p-default p-round">
+                          <div class="pretty p-icon p-round p-pulse">
                             <%= f.radio_button question.id, answer.id, required: "true" %>
                             <div class="state p-primary-o">
+                              <i class="icon mdi mdi-check"></i>
                               <%= f.label question.id, "#{answer.inciso}) #{answer.respuesta}", :value => answer.id %>
                             </div>
                           </div>
@@ -94,7 +95,6 @@
             $('#quiz_form').submit();
           }
         });
-        // $.select2("select");
     });
 
   </script>
