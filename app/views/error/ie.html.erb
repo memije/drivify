@@ -1,2 +1,65 @@
-<h1>Error#ie</h1>
-<p>Find me in app/views/error/ie.html.erb</p>
+<!--<div class="row white-bg" style="height: 100%;">-->
+  <!--<div class="col-sm-12" style="height: 100%;">-->
+  <!--</div>-->
+<!--</div>-->
+<!--<div class="text-center text-white" style="position: relative; top: 50%;">-->
+  <!--<h1>Lo sentimos, tu navegador no está soportado :(</h1>-->
+  <!--<h1>Lo sentimos, tu navegador no está soportado :(</h1>-->
+  <!--<h1>Lo sentimos, tu navegador no está soportado :(</h1>-->
+  <!--<h1>Lo sentimos, tu navegador no está soportado :(</h1>-->
+<!--</div>-->
+
+<style>
+  .outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .middle {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    text-align: center;
+    color: #eee;
+    /*whatever width you want*/
+  }
+  a{
+    color: #eee;
+  }
+  .fa-10x{
+    font-size: 10em;
+  }
+</style>
+
+<div class="outer">
+  <div class="middle">
+    <div class="inner">
+      <i class="fa fa-10x fa-exclamation-circle"></i>
+      <h1>Lo sentimos, tu navegador no está soportado</h1>
+      <h2>Actualiza a uno de los siguientes navegadores</h2>
+      <br>
+      <h2>
+        <a target="_blank" href="https://www.mozilla.org/es-MX/firefox/new/">
+          <i class="fa fa-fw fa-firefox"></i> Mozilla Firefox 19.0.2 <i class="fa fa-fw fa-external-link"></i>
+        </a>
+      </h2>
+      <h2>
+        <a target="_blank" href="https://www.google.com.mx/chrome/index.html">
+          <i class="fa fa-fw fa-chrome"></i> Google Chrome 25.0.1364.160 <i class="fa fa-fw fa-external-link"></i>
+        </a>
+      </h2>
+      <h2>
+        <a target="_blank" href="https://www.mozilla.org/es-MX/firefox/new/">
+          <i class="fa fa-fw fa-safari"></i> Safari 6.0.2 <i class="fa fa-fw fa-external-link"></i>
+        </a>
+      </h2>
+    </div>
+  </div>
+</div>

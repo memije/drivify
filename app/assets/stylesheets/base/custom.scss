@@ -47,13 +47,6 @@ body{
   background-color: $navy_pale;
 }
 
-.backstretch-item{
-  display: block !important;
-  background-image: image_url('car-background.jpg');
-  opacity: 0.25;
-  background-size: 100%;
-}
-
 .md-skin .nav-header{
   background: $navy;
 }
@@ -85,3 +78,9 @@ body{
   height: 1px;
   margin: 20px 0;
 }
+
+.backstretch{
+  opacity: 0.60;
+}
+
+@media screen and (max-height: 575px){ #rc-imageselect, .g-recaptcha {transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;} }

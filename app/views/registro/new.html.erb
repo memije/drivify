@@ -36,46 +36,58 @@
       </div>
       <div class="ibox float-e-margins" style="width: 100%;">
         <div class="ibox-content">
-          <%= form_for :user, html: {role: "form"} do |f| %>
-            <div class="form-group">
-              <label><span class="text-danger">*</span>Nombre(s)</label>
-              <%= f.text_field :nombre, class:"form-control", required:"true" %>
-            </div>
-            <div class="form-group">
-              <label><span class="text-danger">*</span>Apellido Paterno</label>
-              <%= f.text_field :ap_paterno, class:"form-control", required:"true" %>
-            </div>
-            <div class="form-group">
-              <label><span class="text-danger">*</span>Apellido Materno</label>
-              <%= f.text_field :ap_materno, class:"form-control", required:"true" %>
-            </div>
-            <div class="form-group">
-              <label><span class="text-danger">*</span>Fecha de Nacimiento</label>
-              <div class="input-group date">
-                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                <%= f.date_field :fecha_nacimiento, class:"form-control", required:"true", max:"#{DateTime.now}" %>
-              </div>
-            </div>
-            <div class="form-group">
-              <label><span class="text-danger">*</span>CURP</label>
-              <%= f.text_field :curp, class:"form-control", required:"true" %>
-            </div>
-            <div class="form-group">
-              <label><span class="text-danger">*</span>Correo Electrónico</label>
-              <%= f.email_field :email, class:"form-control", required:"true" %>
-            </div>
-            <div class="form-group">
-              <label><span class="text-danger">*</span>Contraseña</label>
-              <%= f.password_field :password, class:"form-control", required:"true", minlength: "8" %>
-            </div>
-            <div class="form-group">
-              <label><span class="text-danger">*</span>Confirmar Contraseña</label>
-              <%= f.password_field :password_confirmation, class:"form-control", required:"true", minlength: "8" %>
-            </div>
-            <%= recaptcha_tags %>
-            <br>
-            <%= f.submit "Enviar", class: "btn btn-primary btn-block" %>
-          <% end %>
+          <%= form_for :user, html: {id: 'signup_form', role: "form"} do |f| %>
+            <div id="signup_steps">
+              <h3>Información Personal</h3>
+              <section class="animated fadeIn">
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Nombre(s)</label>
+                  <%= f.text_field :nombre, class:"form-control", required:"true" %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Apellido Paterno</label>
+                  <%= f.text_field :ap_paterno, class:"form-control", required:"true" %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Apellido Materno</label>
+                  <%= f.text_field :ap_materno, class:"form-control", required:"true" %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Fecha de Nacimiento</label>
+                  <div class="input-group date">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <%= f.date_field :fecha_nacimiento, class:"form-control", required:"true", max:"#{DateTime.now}" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>CURP</label>
+                  <%= f.text_field :curp, class:"form-control", required:"true" %>
+                </div>
+              </section>
+              <h3>Datos de la Cuenta</h3>
+              <section class="animated fadeIn">
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Correo Electrónico</label>
+                  <%= f.email_field :email, class:"form-control", required:"true" %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Contraseña</label>
+                  <%= f.password_field :password, class:"form-control", required:"true", minlength: "8" %>
+                </div>
+                <div class="form-group">
+                  <label><span class="text-danger">*</span>Confirmar Contraseña</label>
+                  <%= f.password_field :password_confirmation, class:"form-control", required:"true", minlength: "8" %>
+                </div>
+              </section>
+              <h3>Verificación</h3>
+              <section class="animated fadeIn">
+                <%= recaptcha_tags %>
+              </section>
+              <br>
+              <%# f.submit "Enviar", class: "btn btn-primary btn-block" %>
+        <% end %>
+
+          </div>
           ¿Ya tienes una cuenta? <%= link_to "Inicia Sesión", login_path %>
         </div>
         <div class="ibox-footer">
@@ -92,10 +104,51 @@
     $(function(){
 
         // $.backstretch("https://images.pexels.com/photos/13861/IMG_3496bfree.jpg");
-        $.backstretch(' ');
+        $.backstretch('<%= image_path('car-background.jpg') %>');
 
         $('#user_curp').on('keyup',function(){
             $(this).val($(this).val().toUpperCase());
+        });
+
+        var form = $('#signup_form');
+        form.validate({
+            errorPlacement: function(error,element){
+                if(element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        }).settings.ignore = ":disabled,:hidden";
+
+        $("#signup_steps").steps({
+            // Appearance
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "none",
+            stepsOrientation: "vertical",
+            // Templates
+            titleTemplate: '#title#',
+            // Labels
+            labels:{
+                finish: "Enviar",
+                next: "Siguiente",
+                previous: "Anterior",
+                loading: "Cargando..."
+            },
+            // Behaviour
+            autoFocus: true,
+            forceMoveForward: true,
+            // Events
+            onStepChanging: function(e, currentIndex, newIndex){
+                return form.valid();
+            },
+            onFinishing: function(event, index){
+                return form.valid();
+            },
+            onFinished: function(event, index){
+                $('#signup_form').submit();
+            }
         });
 
     });

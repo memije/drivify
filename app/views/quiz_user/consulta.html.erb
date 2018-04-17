@@ -3,6 +3,23 @@
     <div class="col-md-12">
       <div class="ibox">
         <div class="ibox-title">
+          <h5>Notación</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="text-success"> Respuesta correcta. <i class="fa fa-check"></i></p>
+              <p class="text-danger"> Respuesta de usuario erronea. <i class="fa fa-times"></i></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox">
+        <div class="ibox-title">
           <h5>Evaluación Teórica</h5>
         </div>
         <div class="ibox-content">
@@ -16,18 +33,18 @@
                     <% if userAnswer.question == question %>
                       <%# Si la respuesta es la respuesta que dio el usuario%>
                       <% if answer.correcta %>
-                        <p class="text-navy"><%= "#{answer.inciso}) #{answer.respuesta}" %></p>
+                        <p class="text-success"><%= "#{answer.inciso}) #{answer.respuesta}" %> <i class="fa fa-check"></i></p>
                       <% elsif userAnswer.answer == answer %>
-                        <p class="text-danger"><%= "#{answer.inciso}) #{answer.respuesta}" %></p>
+                        <p class="text-danger"><%= "#{answer.inciso}) #{answer.respuesta}" %> <i class="fa fa-times"></i></p>
                       <% else %>
                         <p><%= "#{answer.inciso}) #{answer.respuesta}" %></p>
                       <% end %>
                     <% end %>
                   <% end %>
                 <% end %>
-                <div class="hr-line-dashed"></div>
+                <div class="hr-line-dashed-dark"></div>
               <% end %>
-              <h2 class="p-md bg-<%= @quiz.puntaje >= 8 ? "primary" : "danger" %>">Puntaje Final: <%= @quiz.puntaje %></h2>
+              <h2 class="p-md bg-<%= @quiz.puntaje >= 8 ? "success" : "danger" %>">Puntaje Final: <%= @quiz.puntaje %></h2>
             </div>
           </div>
         </div>
