@@ -35,3 +35,14 @@
     </div>
   </div>
 </div>
+
+<% content_for :script do %>
+  <script>
+
+      $(function () {
+          <%= render "js_partials/dataTable.js" %>
+          $.select2("select");
+      });
+
+  </script>
+<% end %>

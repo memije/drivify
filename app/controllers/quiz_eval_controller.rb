@@ -23,7 +23,6 @@ class QuizEvalController < ApplicationController
       flash[:error] = @quiz.errors.full_messages.to_sentence
     end
     redirect_to quiz_eval_path
-    # render :json => @quiz
   end
 
 end

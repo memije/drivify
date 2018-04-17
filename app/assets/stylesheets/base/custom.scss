@@ -30,6 +30,58 @@ body{
 }
 
 .pretty{
-  display: block;    
+  display: block;
   margin: 1em 0;
+}
+
+.select2-container--default .select2-selection--single[aria-expanded="true"],.select2-dropdown{
+  border-color: $navy;
+  border-radius: 0px;
+}
+
+.md-skin .navbar-fixed-top, .md-skin .navbar-static-top {
+  background-color: $navy !important;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: $navy_pale;
+}
+
+.backstretch-item{
+  display: block !important;
+  background-image: image_url('car-background.jpg');
+  opacity: 0.25;
+  background-size: 100%;
+}
+
+.md-skin .nav-header{
+  background: $navy;
+}
+
+.select2-container--default .select2-selection--single{
+  border-radius: 0px;
+}
+
+.select2-container .select2-selection--single {
+  line-height: inherit;
+}
+
+.widget-head-color-box{
+  background-image: image_url('patterns/bg-pattern.png');
+}
+
+* {
+  border-radius: 0px !important;
+}
+
+.unordered-list{
+  padding: 0 40px !important;
+}
+
+.hr-line-dashed-dark {
+  border-top: 1px dashed $navy;
+  color: #ffffff;
+  background-color: #ffffff;
+  height: 1px;
+  margin: 20px 0;
 }

@@ -29,14 +29,14 @@
 										<small>Solicitud realizada el <%= quiz.created_at.strftime("%d/%m/%Y") %> a las <%= quiz.created_at.strftime('%I:%M:%S %p') %></small>
 									</div>
 								<% elsif quiz.get_estado == 2 %>
-									<div class="widget-head-color-box blue-bg p-lg text-center">
+									<div class="widget-head-color-box lazur-bg p-lg text-center">
 										<h2 class="font-bold no-margins">
 											Evaluación Teórica Autorizada
 										</h2>
 										<small>Solicitud realizada el <%= quiz.created_at.strftime("%d/%m/%Y") %> a las <%= quiz.created_at.strftime('%I:%M:%S %p') %></small>
 									</div>
 								<% else %>
-									<div class="widget-head-color-box lazur-bg p-lg text-center">
+									<div class="widget-head-color-box blue-bg p-lg text-center">
 										<h2 class="font-bold no-margins">
 											Evaluación Teórica Presentada
 										</h2>
@@ -90,7 +90,7 @@
                           <% end %>
                           <!--<span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>-->
                           <%= link_to quiz_user_consulta_path(quiz.id) do %>
-                            <span class="btn btn-xs btn-mg btn-success"><i class="fa fa-search"></i> Consultar Evaluación</span>
+                            <span class="btn btn-xs btn-mg btn-info"><i class="fa fa-search"></i> Consultar Evaluación</span>
                           <% end %>
                         <% end %>
                       </div>

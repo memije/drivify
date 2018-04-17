@@ -6,7 +6,7 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <h3 class="block m-t-xs">
-                                <i class="fa fa-car"></i> DRIVIFY
+                                <i class="fa fa-fw fa-car"></i> DRIVIFY
                             </h3>
                             <span class="block text-muted m-t-xs">
                                 <strong class="font-bold"><%= "#{current_user.nombre} #{current_user.ap_paterno}"%></strong>
@@ -18,13 +18,13 @@
                     </ul>-->
                 </div>
                 <div class="logo-element">
-                  <i class="fa fa-car"></i>
+                  <i class="fa fa-fw fa-car"></i>
                 </div>
             </li>
 
             <li class="<%= 'active' if (current_page?(home_path) || current_page?(root_path)) %>">
                 <%= link_to home_path do %>
-                <i class="fa fa-home"></i> <span class="nav-label">Inicio</span>
+                <i class="fa fa-fw fa-home"></i> <span class="nav-label">Inicio</span>
                 <% end %>
             </li>
 
@@ -32,25 +32,25 @@
             <% if current_user.role.id == 1 %>
               <li class="<%= 'active' if params[:admin_users_scope].eql? true %>">
                 <%= link_to user_admin_path do %>
-                  <i class="fa fa-users"></i> <span class="nav-label">Usuarios</span>
+                  <i class="fa fa-fw fa-users"></i> <span class="nav-label">Usuarios</span>
                 <% end %>
               </li>
 
               <li class="<%= 'active' if params[:admin_quizzes_type_scope].eql? true %>">
                 <%= link_to quiz_type_admin_path do %>
-                  <i class="fa fa-list-ol"></i> <span class="nav-label">Tipos de Evaluaciones Teóricas</span>
+                  <i class="fa fa-fw fa-list-ol"></i> <span class="nav-label">Tipos de Evaluaciones Teóricas</span>
                 <% end %>
               </li>
 
               <li class="<%= 'active' if params[:admin_questions_scope].eql? true %>">
                 <%= link_to question_admin_path do %>
-                  <i class="fa fa-question"></i> <span class="nav-label">Preguntas</span>
+                  <i class="fa fa-fw fa-question"></i> <span class="nav-label">Preguntas</span>
                 <% end %>
               </li>
 
               <li class="<%= 'active' if params[:admin_answers_scope].eql? true %>">
                 <%= link_to answer_admin_path do %>
-                  <i class="fa fa-check"></i> <span class="nav-label">Respuestas</span>
+                  <i class="fa fa-fw fa-check"></i> <span class="nav-label">Respuestas</span>
                 <% end %>
               </li>
             <% end %>
@@ -59,7 +59,12 @@
             <% if current_user.role.id == 2 %>
               <li class="<%= 'active' if params[:evaluaciones_teoricas_scope].eql? true %>">
                 <%= link_to quiz_eval_path do %>
-                  <i class="fa fa-list-ol"></i> <span class="nav-label">Evaluaciones Teóricas</span>
+                  <i class="fa fa-fw fa-list-ol"></i> <span class="nav-label">Evaluaciones Teóricas</span>
+                <% end %>
+              </li>
+              <li class="<%= 'active' if params[:simulaciones_scope].eql? true %>">
+                <%= link_to simulation_eval_path do %>
+                  <i class="fa fa-fw fa-car"></i> <span class="nav-label">Evaluaciones Prácticas</span>
                 <% end %>
               </li>
             <% end %>
@@ -68,12 +73,12 @@
             <% if current_user.role.id == 3 %>
               <li class="<%= 'active' if params[:evaluaciones_teoricas_scope].eql? true %>">
                 <%= link_to quiz_user_path do %>
-                  <i class="fa fa-list-ol"></i> <span class="nav-label">Evaluaciones Teóricas</span>
+                  <i class="fa fa-fw fa-list-ol"></i> <span class="nav-label">Evaluaciones Teóricas</span>
                 <% end %>
               </li>
               <li class="<%= 'active' if params[:simulaciones_scope].eql? true %>">
                 <%= link_to simulation_user_path do %>
-                  <i class="fa fa-car"></i> <span class="nav-label">Evaluaciones Prácticas</span>
+                  <i class="fa fa-fw fa-car"></i> <span class="nav-label">Evaluaciones Prácticas</span>
                 <% end %>
               </li>
             <% end %>

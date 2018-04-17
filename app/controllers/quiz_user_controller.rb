@@ -23,7 +23,6 @@ class QuizUserController < ApplicationController
     @quiz = Quiz.find(params[:id])
     if @quiz.user != current_user || !@quiz.puntaje.blank?
       redirect_to quiz_user_path
-    else
     end
   end
 
