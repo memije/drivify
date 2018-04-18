@@ -74,3 +74,8 @@ gem "jquery-rails"
 
 # user agent
 gem 'useragent'
+
+group :development, :test do
+  gem 'ffaker'
+  gem 'rspec-rails', '~> 3.7'
+end
