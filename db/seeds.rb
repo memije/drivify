@@ -6,13 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-def random_text(palabras)
-  res = ""
-  (0..palabras).each do |index|
-    res = res+" "+(0...8).map { (65 + rand(26)).chr }.join
-  end
-  res
-end
+require 'ffaker'
 
 # Role seed
 Role.create([
@@ -21,6 +15,7 @@ Role.create([
                 {nombre: 'USUARIO', descripcion: 'Usuario General'}
             ])
 
+# Hour seed
 Hour.create([
                 {hora_inicio: '09:00 AM', hora_fin: '10:00 AM'},
                 {hora_inicio: '10:00 AM', hora_fin: '11:00 AM'},
@@ -33,11 +28,6 @@ Hour.create([
                 {hora_inicio: '05:00 PM', hora_fin: '06:00 PM'},
             ])
 
-
-# QuizType seed
-# (1..10).each do |index|
-# end
-#
 
 # Crea tipos de la A a la J
 ("A".."E").each do |letra|
@@ -254,7 +244,15 @@ User.create([
 
 (1..9).each do |index|
   User.create({
-                  nombre: 'Prueba', ap_paterno: 'Prueba', ap_materno: 'Prueba', fecha_nacimiento: '01/01/1999', curp: "LALA990101HDFXXX0#{index}", email: "prueba#{index}@mail.com", password: '12345678', password_confirmation:'12345678',role: Role.find(3)
+                  nombre: FFaker::NameMX.name,
+                  ap_paterno: FFaker::NameMX.last_name,
+                  ap_materno: FFaker::NameMX.last_name,
+                  fecha_nacimiento: FFaker::Time.between(Date.new(1990, 01, 01), Date.new(2000, 01, 01)),
+                  curp: FFaker::IdentificationMX.curp,
+                  email: "prueba#{index}@mail.com",
+                  password: '12345678',
+                  password_confirmation:'12345678',
+                  role: Role.find(3)
               })
 end
 
