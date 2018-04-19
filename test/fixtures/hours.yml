@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  hora_inicio: MyString
-  hora_fin: MyString
-
-two:
-  hora_inicio: MyString
-  hora_fin: MyString

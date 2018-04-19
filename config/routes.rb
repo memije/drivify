@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'about/index'
+
   get 'quiz_user/index'
 
   get 'quiz_eval/index'
@@ -38,6 +40,8 @@ Rails.application.routes.draw do
   delete 'session' => 'session#destroy', as: :session_destroy
 
   get 'home' => 'home#index', as: :home
+
+  get 'about' => 'about#index', as: :about
 
   # modulos para administradores
   scope "/admin" do

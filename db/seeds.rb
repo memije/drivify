@@ -17,7 +17,7 @@ end
 # Role seed
 Role.create([
                 {nombre: 'ADMIN', descripcion: 'Administrador del Sistema'},
-                {nombre: 'EVALUADOR', descripcion: 'Evaluador de Examenes y Simulaciones'},
+                {nombre: 'EVALUADOR', descripcion: 'Evaluador de Exámenes y Simulaciones'},
                 {nombre: 'USUARIO', descripcion: 'Usuario General'}
             ])
 

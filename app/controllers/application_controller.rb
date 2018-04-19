@@ -6,18 +6,19 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  Browser = Struct.new(:browser, :version)
+  browser = Struct.new(:browser, :version)
 
   SupportedBrowsers = [
-      Browser.new('Safari', '6.0.2'),
-      Browser.new('Firefox', '19.0.2'),
-      Browser.new('Chrome', '25.0.1364.160')
+      browser.new('Safari', '6.0.2'),
+      browser.new('Firefox', '19.0.2'),
+      browser.new('Edge', '16.16299'),
+      browser.new('Chrome', '25.0.1364.160')
   ]
 
   def browser_version
     user_agent = UserAgent.parse(request.user_agent)
     unless SupportedBrowsers.detect { |browser| user_agent >= browser }
-      redirect_to error_ie_path and return
+      redirect_to error_ie_path
     end
   end
 
