@@ -1,37 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'about/index'
-
-  get 'quiz_user/index'
-
-  get 'quiz_eval/index'
-
-  get 'quiz_controller_eval/index'
-
-  get 'eval_quiz_controller/index'
-
-  get 'quiz_controller/index'
-
-  get 'quiz_type_admin/index'
-
-  get 'quiz_type_admin/new'
-
-  get 'quiz_type_admin/create'
-
-  get 'quiz_type_admin/edit'
-
-  get 'quiz_type_admin/update'
-
-  get 'quiz_type_admin/destroy'
-
-  get 'evaluation/index'
-
-  get 'evaluation/new'
-
-  get 'evaluation/create'
-
-  get 'evaluation/destroy'
-
   get 'registro' => 'registro#new', as: :registro
   post 'registro' => 'registro#create', as: :registro_create
 

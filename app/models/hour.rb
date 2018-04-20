@@ -1,4 +1,7 @@
 class Hour < ApplicationRecord
+
+  validates :hora_inicio, :hora_fin, presence: true
+
   has_many :appointments
 
   def rango_horas
