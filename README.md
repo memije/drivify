@@ -1,7 +1,6 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Memije/drivify/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Memije/drivify/?branch=master)
 [![Build Status](https://travis-ci.org/Memije/drivify.svg?branch=master)](https://travis-ci.org/Memije/drivify)
 
-# :^)
 Instituto Politécnico Nacional - Escuela Superior de Cómputo
 ------------------------------------------------------------
 
@@ -20,6 +19,6 @@ Desarrollador
 
 Estudiante de Ingeniería en Sistemas Computacionales con dos años de experiencia en desarrollo web profesional.
 
-[![LinkedIn](https://image.ibb.co/mCKGE7/linkedin_button_1.png)](https://www.linkedin.com/in/daniel-izacar-memije-f%C3%A1brego-24113b15b/)
+Aplicación Web desarrollada en Ruby on Rails.
 
-Aplicación Web desarrollada en Ruby on Rails
+[![LinkedIn](https://image.ibb.co/mCKGE7/linkedin_button_1.png)](https://www.linkedin.com/in/daniel-izacar-memije-f%C3%A1brego-24113b15b/)
