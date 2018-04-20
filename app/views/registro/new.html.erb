@@ -78,6 +78,9 @@
                   <label><span class="text-danger">*</span>Confirmar Contraseña</label>
                   <%= f.password_field :password_confirmation, class:"form-control", required:"true", minlength: "8" %>
                 </div>
+                <div class="form-group">
+                  <p class="text-justify alert alert-warning">Por tu seguridad, las contraseñas se almacenan cifradas en la base de datos, por lo que resulta imposible recuperarla en caso de extravío.</p>
+                </div>
               </section>
               <h3>Verificación</h3>
               <section class="animated fadeIn">

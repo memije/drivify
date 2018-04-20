@@ -40,7 +40,7 @@
                         <td class="text-left"><%= user.fecha_nacimiento.strftime('%d/%m/%Y') %></td>
                         <td><%= user.role.nombre_descripcion %></td>
                         <td class="text-left"><%= user.created_at.strftime('%d/%m/%Y') %> <small><%= user.created_at.strftime('%I:%M:%S %p') %></small></td>
-                          <% if user.role.id != 1 %>
+                          <% if user.role.id != 1 && user.role.id != 2 %>
                             <td class="text-center"><span class="badge badge-info"><%= user.requested_quizzes.count %></span></td>
                             <td class="text-center">
                               <%= link_to edit_user_path(user.id) do %>

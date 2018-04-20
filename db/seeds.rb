@@ -237,9 +237,33 @@ Answer.create(inciso: "b", respuesta: "Falso.", correcta: true, question: questi
 
 # User seed
 User.create([
-                {nombre: 'Daniel', ap_paterno: 'Memije', ap_materno: 'Fábrego', fecha_nacimiento: '01/01/1994', curp: 'BABB990101HDFXXX00', email: 'mail1@mail.com', password: '12345678', password_confirmation:'12345678',role: Role.find(1)},
-                {nombre: 'Estefanía', ap_paterno: 'Yañez', ap_materno: 'Romero', fecha_nacimiento: '01/01/1994', curp: 'LALA990101MDFXXX00', email: 'mail2@mail.com', password: '12345678', password_confirmation: '12345678', role: Role.find(2)},
-                {nombre: 'Sergio', ap_paterno: 'Granados', ap_materno: 'Solano', fecha_nacimiento: '01/01/1994', curp: 'SERG990101HDFXXX00', email: 'mail3@mail.com', password: '12345678', password_confirmation:'12345678', role: Role.find(3)}
+                {nombre: 'Daniel',
+                 ap_paterno: 'Memije',
+                 ap_materno: 'Fábrego',
+                 fecha_nacimiento: '01/01/1994',
+                 curp: 'BABB990101HDFXXX00',
+                 email: 'mail1@mail.com',
+                 password: '12345678',
+                 password_confirmation:'12345678',
+                 role: Role.find(1)},
+                {nombre: 'Estefanía',
+                 ap_paterno: 'Yañez',
+                 ap_materno: 'Romero',
+                 fecha_nacimiento: '01/01/1994',
+                 curp: 'LALA990101MDFXXX00',
+                 email: 'mail2@mail.com',
+                 password: '12345678',
+                 password_confirmation: '12345678',
+                 role: Role.find(2)},
+                {nombre: FFaker::NameMX.name,
+                 ap_paterno: FFaker::NameMX.last_name,
+                 ap_materno: FFaker::NameMX.last_name,
+                 fecha_nacimiento: FFaker::Time.between(Date.new(1990, 01, 01), Date.new(2000, 01, 01)),
+                 curp: FFaker::IdentificationMX.curp,
+                 email: 'mail3@mail.com',
+                 password: '12345678',
+                 password_confirmation:'12345678',
+                 role: Role.find(3)}
             ])
 
 (1..9).each do |index|

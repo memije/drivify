@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   ]
 
   def browser_version
-    user_agent = UserAgent.parse(request.user_agent)
-    unless SupportedBrowsers.detect { |browser| user_agent >= browser }
-      redirect_to error_ie_path
-    end
+    #user_agent = UserAgent.parse(request.user_agent)
+    #unless SupportedBrowsers.detect { |browser| user_agent >= browser }
+    #  redirect_to error_ie_path
+    #end
   end
 
   def authenticate_user
