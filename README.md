@@ -21,4 +21,6 @@ Estudiante de Ingeniería en Sistemas Computacionales con dos años de experienc
 
 Aplicación Web desarrollada en Ruby on Rails.
 
+---
+
 [![LinkedIn](https://image.ibb.co/mCKGE7/linkedin_button_1.png)](https://www.linkedin.com/in/daniel-izacar-memije-f%C3%A1brego-24113b15b/ "Daniel Memije en LinkedIn")
