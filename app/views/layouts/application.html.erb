@@ -43,8 +43,19 @@
     <!-- End wrapper-->
     <script>
 
-        $(function(){
+        $(function(){            
             $("[data-toggle='tooltip']").tooltip();
+            var DELAY = 900000;
+            var cerrarSesionTimer = setTimeout(function(){
+                $('#cerrar_sesion_btn').trigger('click');
+            }, DELAY);
+
+            $(document).click(function(){
+                clearTimeout(cerrarSesionTimer);
+                cerrarSesionTimer = setTimeout(function(){
+                    $('#cerrar_sesion_btn').trigger('click');
+                }, DELAY);
+            });
         });
 
         <% if flash[:notice] %>

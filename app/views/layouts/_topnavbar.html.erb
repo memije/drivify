@@ -5,7 +5,7 @@
     </div>
     <ul class="nav navbar-top-links navbar-right">
       <li>
-        <%= link_to session_destroy_path, method: :delete do %>
+        <%= link_to session_destroy_path, method: :delete, id: 'cerrar_sesion_btn' do %>
           <i class="fa fa-sign-out"></i> Cerrar Sesión
         <% end %>
       </li>
