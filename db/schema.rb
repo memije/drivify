@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412223445) do
+ActiveRecord::Schema.define(version: 20181019054904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,14 +74,24 @@ ActiveRecord::Schema.define(version: 20180412223445) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "simulation_speed_pollings", force: :cascade do |t|
+    t.decimal "speed"
+    t.decimal "second"
+    t.bigint "simulation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["simulation_id"], name: "index_simulation_speed_pollings_on_simulation_id"
+  end
+
   create_table "simulations", force: :cascade do |t|
     t.integer "obstaculos_derribados"
-    t.integer "velocidad_excedida"
-    t.bigint "tiempo_simulacion"
+    t.decimal "velocidad_promedio"
+    t.decimal "tiempo_simulacion"
     t.datetime "fecha_aplicacion"
     t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "semaforos"
     t.index ["quiz_id"], name: "index_simulations_on_quiz_id"
   end
 
@@ -117,6 +127,7 @@ ActiveRecord::Schema.define(version: 20180412223445) do
   add_foreign_key "quizzes", "quiz_types"
   add_foreign_key "quizzes", "users"
   add_foreign_key "quizzes", "users", column: "evaluator_id"
+  add_foreign_key "simulation_speed_pollings", "simulations"
   add_foreign_key "simulations", "quizzes"
   add_foreign_key "user_answers", "answers"
   add_foreign_key "user_answers", "questions"

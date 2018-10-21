@@ -58,7 +58,7 @@
                   <div class="row p-w-xs">
                     <hr>
                     <div class="col-lg-4"><b>Tipo de Examen:</b></div>
-                    <div class="col-lg-8"><%= quiz.quiz_type.nombre%></div>
+                    <div class="col-lg-8"><%= quiz.quiz_type.nombre %></div>
                   </div>
                   <div class="row p-w-xs">
                     <hr>
@@ -87,11 +87,15 @@
                             <%= link_to simulation_user_new_path(quiz.id) do %>
                               <span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-calendar"></i> Agendar Evaluación Práctica</span>
                             <% end %>
-                            <% elsif if quiz.puntaje >= 8 && !quiz.simulation.blank? %>
-                              <small class="btn-mg">Evaluación Práctica agendada para el <%= "#{quiz.simulation.appointment.fecha.strftime("%d/%m/%Y")}, #{quiz.simulation.appointment.hour.rango_horas}" %></small>
-                            <% end %>
+                          <% elsif if quiz.puntaje >= 8 && !quiz.simulation.blank? %>
+                            <small class="btn-mg">Evaluación Práctica agendada para el <%= "#{quiz.simulation.appointment.fecha.strftime("%d/%m/%Y")}, #{quiz.simulation.appointment.hour.rango_horas}" %></small>
                           <% end %>
-                          <!--<span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>-->
+                          <% if quiz.puntaje >= 8 && !quiz.simulation.fecha_aplicacion.blank? %>
+                            <%= link_to simulation_endpoint_show_path(quiz.id, format: "pdf") do %>
+                              <span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>
+                            <% end %>                                                      
+                          <% end %>
+                        <% end %>                          
                           <%= link_to quiz_user_consulta_path(quiz.id) do %>
                             <span class="btn btn-xs btn-mg btn-info"><i class="fa fa-search"></i> Consultar Evaluación</span>
                           <% end %>

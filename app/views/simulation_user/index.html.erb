@@ -44,9 +44,18 @@
                   </div>
                   <div class="row p-w-xs">
                     <hr>
-                    <div class="col-lg-4"><b>Velocidad Excedida:</b></div>
+                    <div class="col-lg-4"><b>Luces Rojas Ignoradas:</b></div>
                     <% if simulation.get_estado > 1 %>
-                      <div class="col-lg-8"><%= "#{simulation.velocidad_excedida} veces" %></div>
+                      <div class="col-lg-8"><%= simulation.semaforos %></div>
+                    <% else%>
+                      <div class="col-lg-8">-</div>
+                    <% end %>
+                  </div>
+                  <div class="row p-w-xs">
+                    <hr>
+                    <div class="col-lg-4"><b>Velocidad Promedio:</b></div>
+                    <% if simulation.get_estado > 1 %>
+                      <div class="col-lg-8"><%= "#{simulation.velocidad_promedio} km/h" %></div>
                     <% else%>
                       <div class="col-lg-8">-</div>
                     <% end %>
@@ -55,7 +64,7 @@
                     <hr>
                     <div class="col-lg-4"><b>Tiempo de Simulación:</b></div>
                     <% if simulation.get_estado > 1 %>
-                      <div class="col-lg-8"><%= simulation.duracion_horas_minutos %></div>
+                      <div class="col-lg-8"><%= simulation.duracion_horas_minutos_segundos %></div>
                     <% else%>
                       <div class="col-lg-8">-</div>
                     <% end %>

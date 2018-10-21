@@ -1,0 +1,2 @@
+module SimulationSpeedPollingsHelper
+end

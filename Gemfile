@@ -75,6 +75,12 @@ gem "jquery-rails"
 # user agent
 gem 'useragent'
 
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+gem 'rqrcode_png'
+gem "chartkick"
+gem 'dragonfly'
+
 group :development, :test do
   gem 'ffaker'
   gem 'rspec-rails', '~> 3.7'

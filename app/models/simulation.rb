@@ -1,6 +1,7 @@
 class Simulation < ApplicationRecord
   belongs_to :quiz
   has_one :appointment, :dependent => :destroy
+  has_many :simulation_speed_pollings, :dependent => :destroy
 
   def get_color
     if fecha_aplicacion.blank?
@@ -18,9 +19,14 @@ class Simulation < ApplicationRecord
     end
   end
 
-  def duracion_horas_minutos
-    horas = tiempo_simulacion / (1000 * 60 * 60)
-    minutos = tiempo_simulacion / (1000 * 60) % 60
-    "#{horas} horas con #{minutos} minutos"
+  def duracion_horas_minutos_segundos
+    seconds = tiempo_simulacion % 60
+    minutes = (tiempo_simulacion / 60) % 60
+    hours = tiempo_simulacion / (60 * 60)
+    format("%02d:%02d:%02d", hours, minutes, seconds)
+  end
+
+  def get_horas
+    appointment.hour
   end
 end
