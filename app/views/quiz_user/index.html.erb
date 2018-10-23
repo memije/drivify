@@ -91,11 +91,11 @@
                             <small class="btn-mg">Evaluación Práctica agendada para el <%= "#{quiz.simulation.appointment.fecha.strftime("%d/%m/%Y")}, #{quiz.simulation.appointment.hour.rango_horas}" %></small>
                           <% end %>
                           <% if quiz.puntaje >= 8 && !quiz.simulation.fecha_aplicacion.blank? %>
-                            <%= link_to simulation_endpoint_show_path(quiz.id, format: "pdf") do %>
+                            <%= link_to simulation_endpoint_show_path(quiz.id, format: "pdf"), target: :_blank do %>
                               <span class="btn btn-xs btn-mg btn-primary"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>
-                            <% end %>                                                      
+                            <% end %>
                           <% end %>
-                        <% end %>                          
+                        <% end %>
                           <%= link_to quiz_user_consulta_path(quiz.id) do %>
                             <span class="btn btn-xs btn-mg btn-info"><i class="fa fa-search"></i> Consultar Evaluación</span>
                           <% end %>

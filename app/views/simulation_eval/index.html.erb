@@ -48,7 +48,9 @@
                         <% end %>
                         <td class="text-center">
                           <% if simulation.get_estado == 2 %>
-                            <span class="btn btn-sm btn-mg btn-danger" data-toggle="tooltip" data-placement="top" title="Generar Dictamen"><i class="fa fa-file-pdf-o"></i></span>
+                            <%= link_to simulation_endpoint_show_path(simulation.quiz.id, format: "pdf"), target: :_blank do %>
+                              <span class="btn btn-sm btn-mg btn-danger" data-toggle="tooltip" data-placement="top" title="Generar Dictamen"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>
+                            <% end %>
                           <% else %>
                           -
                           <% end %>

@@ -72,7 +72,7 @@ class SimulationsController < ApplicationController
     @user = current_user
     @quiz = Quiz.find(params[:id])
     @simulation = @quiz.simulation
-    @digest = Digest::SHA2.new(512).base64digest("#{@user.id}#{@quiz.id}#{@simulation.id}")
+    @digest = Digest::SHA2.new(512).base64digest("#{@quiz.puntaje}#{@simulation.obstaculos_derribados}#{@simulation.semaforos}#{@simulation.tiempo_simulacion}#{@simulation.velocidad_promedio}")
 
     if @quiz.fecha_aplicacion.blank? || @simulation.fecha_aplicacion.blank?
       flash[:error] = "Operación no válida"
