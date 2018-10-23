@@ -82,6 +82,11 @@ gem "chartkick"
 gem 'dragonfly'
 gem 'ffaker'
 
+gem "sprockets", ">= 3.7.2"
+gem "ffi", ">= 1.9.24"
+gem "rubyzip", ">= 1.2.2"
+
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.7'
 end
