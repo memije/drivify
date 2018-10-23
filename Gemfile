@@ -80,8 +80,8 @@ gem 'wkhtmltopdf-binary'
 gem 'rqrcode_png'
 gem "chartkick"
 gem 'dragonfly'
+gem 'ffaker'
 
 group :development, :test do
-  gem 'ffaker'
   gem 'rspec-rails', '~> 3.7'
 end
