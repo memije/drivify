@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # get 'simulation_speed_pollings/list'  
+
   get 'registro' => 'registro#new', as: :registro
   post 'registro' => 'registro#create', as: :registro_create
 
@@ -94,6 +96,14 @@ Rails.application.routes.draw do
     end
 
   end
+
+  scope "simulations" do
+    post "/create" => 'simulations#create', as: :simulation_endpoint_create
+    post "/index" => 'simulations#index', as: :simulation_endpoint_index
+    get "/show/:id" => 'simulations#show', as: :simulation_endpoint_show
+  end
+
+  post 'simulation_speed_pollings/create'
 
   get '/error_ie' => 'error#ie', as: :error_ie
 

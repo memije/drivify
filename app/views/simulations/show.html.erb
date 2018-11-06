@@ -1,0 +1,108 @@
+<div class="wrapper wrapper-content animated fadeInDown">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h1><i class="fa fa-car"></i> DRIVIFY - Resultados Finales <small class="pull-right text-small"><%= DateTime.now.strftime("%d/%m/%Y") %></small></h1>
+        </div>
+
+        <div class="ibox-content">
+          <h2><i class="fa fa-user"></i> <%= @user.nombre_completo %></h2>
+          <h5>CURP: <%= @user.curp %></h5>
+          <h5>Email: <%= @user.email %></h5>
+          <hr/>
+          <h3><i class="fa fa-file-text"></i> Evaluación Teórica</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table table-hover" width="100%">
+                  <tbody>
+                    <tr>
+                      <td class="text-left" width="20%"><b>Tipo de Examen</b></td>
+                      <td class="text-left"><%= @quiz.quiz_type.nombre %></td>
+                      <td class="text-left" width="20%"><b>Puntaje</b></td>
+                      <td class="text-left"><span class="text-success"><%= @quiz.puntaje %></span></td>
+                    </tr>
+                    <tr>
+                      <td class="text-left" width="20%"><b>Fecha de Aplicación</b></td>
+                      <td class="text-left"><%= @quiz.fecha_aplicacion.strftime("%d/%m/%Y") %> a las <%= @quiz.fecha_aplicacion.strftime('%I:%M:%S %p') %></td>
+                      <td class="text-left" width="20%"><b>Evaluador</b></td>
+                      <td class="text-left"><%= @quiz.evaluator.nombre_completo %></td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                    <tr>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <h3><i class="fa fa-car"></i> Simulación</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table table-hover" width="100%">
+                  <tbody>
+                    <tr>
+                      <td class="text-left" width="20%"><b>Fecha de Aplicación</b></td>
+                      <td class="text-left"><%= @simulation.fecha_aplicacion.strftime("%d/%m/%Y") %> a las <%= @simulation.fecha_aplicacion.strftime('%I:%M:%S %p') %></td>
+                    </tr>
+                    <tr>
+                      <td class="text-left" width="20%"><b>Conos Derribados</b></td>
+                      <td class="text-left"><span class="text-<%= ((@simulation.obstaculos_derribados * 100.0) / 538.0).round > 10 ? "danger" : "success" %>"><%= @simulation.obstaculos_derribados %> / 538 (<%= ((@simulation.obstaculos_derribados * 100.0) / 538.0).round %>%)</span></td>
+                      <td class="text-left" width="20%"><b>Luces Rojas Ignoradas</b></td>
+                      <td class="text-left"><span class="text-<%= @simulation.semaforos > 0 ? "danger" : "success" %>"><%= @simulation.semaforos %> / 2</span></td>
+                    </tr>
+                    <tr>
+                      <td class="text-left" width="20%"><b>Velocidad Promedio</b></td>
+                      <td class="text-left"><span class="text-<%= @simulation.velocidad_promedio > 50 ? "danger" : "success" %>"><%= @simulation.velocidad_promedio.round %> km/h</span></td>
+                      <td class="text-left" width="20%"><b>Tiempo de Simulación</b></td>
+                      <td class="text-left"><%= @simulation.duracion_horas_minutos_segundos %> (hh:mm:ss)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <hr/>
+
+          <h3><i class="fa fa-tachometer"></i> Gráfica de Velocidad</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <%= line_chart @data, suffix: " km/h", width: "850px",
+              library: {
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                yAxis: {
+                  plotLines: [{
+                    color: 'red',
+                    value: 50,
+                    width: 2,
+                  }]
+                }
+              } %>
+            </div>
+          </div>
+          <hr/>
+
+          <h3><i class="fa fa-check-square-o"></i> Cadena de Autenticidad</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <p><%= @digest %></p>
+              <%= image_tag @qr, class:"img-responsive" %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

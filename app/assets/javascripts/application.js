@@ -27,4 +27,5 @@
 //= require jqueryValidate/jquery.validate.js
 //= require jqueryValidate/additional-methods.js
 //= require jqueryValidate/i18n/messages_es.js
+
 //= require_tree .

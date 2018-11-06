@@ -19,7 +19,7 @@
                       <th class="text-left">Fecha de Solicitud</th>
                       <th class="text-left">Fecha de Aplicación</th>
                       <th class="text-right">Obstaculos Derribados</th>
-                      <th class="text-right">Velocidad Excedida</th>
+                      <th class="text-right">Velocidad Promedio</th>
                       <th class="text-right">Tiempo de Simulación</th>
                       <th class="text-center">Estado de la Evaluación</th>
                       <th class="text-center">Acción</th>
@@ -39,8 +39,8 @@
                           <td class="text-left"><%= simulation.fecha_aplicacion.strftime('%d/%m/%Y') %> <small><%= simulation.fecha_aplicacion.strftime('%I:%M:%S %p') %></small></td>
                         <% end %>
                         <td class="text-right"><%= simulation.get_estado <= 1 ? "-" : simulation.obstaculos_derribados %></td>
-                        <td class="text-right"><%= simulation.get_estado <= 1 ? "-" : "#{simulation.velocidad_excedida} veces" %></td>
-                        <td class="text-right"><%= simulation.get_estado <= 1 ? "-" : simulation.duracion_horas_minutos %></td>
+                        <td class="text-right"><%= simulation.get_estado <= 1 ? "-" : "#{simulation.velocidad_promedio} km/h" %></td>
+                        <td class="text-right"><%= simulation.get_estado <= 1 ? "-" : simulation.duracion_horas_minutos_segundos %></td>
                         <% if simulation.get_estado == 1 %>
                           <td class="text-center"><span class="label label-info">Agendada</span></td>
                         <% else %>
@@ -48,7 +48,9 @@
                         <% end %>
                         <td class="text-center">
                           <% if simulation.get_estado == 2 %>
-                            <span class="btn btn-sm btn-mg btn-danger" data-toggle="tooltip" data-placement="top" title="Generar Dictamen"><i class="fa fa-file-pdf-o"></i></span>
+                            <%= link_to simulation_endpoint_show_path(simulation.quiz.id, format: "pdf"), target: :_blank do %>
+                              <span class="btn btn-sm btn-mg btn-danger" data-toggle="tooltip" data-placement="top" title="Generar Dictamen"><i class="fa fa-file-pdf-o"></i> Generar Dictamen</span>
+                            <% end %>
                           <% else %>
                           -
                           <% end %>
